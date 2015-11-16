@@ -1,0 +1,18 @@
+'use strict';
+var router = require('express').Router();
+
+router.use('/brands', require('./api/brands'));
+
+router.get('/', function(req, res, next) {
+	console.log('hitting this')
+	res.send(req.user)
+})
+
+router.use(function (req, res) {
+    res.status(404).end();
+});
+
+
+module.exports = router;
+
+

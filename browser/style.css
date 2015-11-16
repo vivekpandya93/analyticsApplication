@@ -1,0 +1,13 @@
+<style type="text/css">
+			.coolForm .form-group{
+				float: left;
+				width: 22%;
+			}
+			.coolForm .form-group .form-control{
+				display: block;
+				width: 200px;
+			}
+			.coolForm .btn{
+				margin: 15px 0 0;
+			}
+	</style>
