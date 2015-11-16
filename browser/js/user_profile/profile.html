@@ -1,0 +1,21 @@
+<div class="container" style="margin: 100px">
+		<div ng-init="customized()">
+			<div class="row">
+				<div class="col-xs-12">
+				<table class="table table-bordered">
+					<tr>
+						  <th>Brand Name</th>
+			    		<th>Revenue</th> 
+			    		<th>Units Sold</th>
+					</tr>
+			   	<tr ng-repeat="value in values">
+			   			<td ng-click= "goToBrand($event)"><a style="cursor: pointer">{{value.product_brand}}</a></td>
+			   			<td>{{value.Revenue}}</td>
+			   			<td>{{value.UnitsSold}}</td>
+			   	</tr> 
+		   </table>
+		 </div>
+		   <div ui-view></div>
+		</div>
+	</div>
+</div>

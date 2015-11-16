@@ -1,0 +1,20 @@
+<div class="container" style="margin: 100px">
+	<div class="col-xs-12">
+			<div class="row">
+				<table class="table table-bordered">
+					<tr>
+						  <th>SKU</th>
+			    		<th>Name</th> 
+			    		<th>Units Sold</th>
+			    		<th>Revenue</th>
+					</tr>
+			   	<tr ng-repeat="Stock in brandInfo">
+			   			<td><a ui-sref="stock_left({sku:Stock.SKU, name:Stock.Name})">{{Stock.SKU}}</a></td>
+			   			<td>{{Stock.Name}}</td>
+			   			<td>{{Stock.UnitsSold}}</td>
+			   		  <td>{{Stock.Revenue}}</td>
+			   	</tr> 
+		   </table>
+		  </div>
+	</div>
+</div>
