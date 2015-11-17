@@ -1,20 +1,22 @@
-<div class="container" style="margin: 100px">
-	<div class="col-xs-12">
+<div class="container">
 			<div class="row">
-				<table class="table table-bordered">
-					<tr>
-						  <th>SKU</th>
-			    		<th>Name</th> 
-			    		<th>Units Sold</th>
-			    		<th>Revenue</th>
-					</tr>
-			   	<tr ng-repeat="Stock in brandInfo">
-			   			<td><a ui-sref="stock_left({sku:Stock.SKU, name:Stock.Name})">{{Stock.SKU}}</a></td>
-			   			<td>{{Stock.Name}}</td>
-			   			<td>{{Stock.UnitsSold}}</td>
-			   		  <td>{{Stock.Revenue}}</td>
-			   	</tr> 
-		   </table>
+			   	<ul>
+			   		<div ng-repeat="Stock in brandInfo" class="col-xs-12 col-sm-6 col-md-6 col-lg-4 ">	   		
+							<div class="card">
+							  <img class="card-img-top" ng-src="http://imr.namshi.com/product/{{Stock.SKU}}?angle=1&view=catalog" alt="Card image cap">
+							  <div class="card-block">
+							    <h4 class="card-title">{{Stock.Name}}</h4>
+							 </div>
+							  <ul class="list-group list-group-flush">
+							    <li class="list-group-item">Revenue: {{Stock.Revenue}}</li>
+							    <li class="list-group-item">Units Sold: {{Stock.UnitsSold}}</li>
+							    <li class="list-group-item"><a ui-sref="stock_left({sku:Stock.SKU, name:Stock.Name})">{{Stock.SKU}}</a></li>
+							  </ul>
+							</div>
+						</div>
+			   	</ul> 
 		  </div>
-	</div>
 </div>
+
+
+
