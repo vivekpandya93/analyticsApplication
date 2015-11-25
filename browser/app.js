@@ -8,11 +8,11 @@ app.config(function ($urlRouterProvider, $locationProvider){
 
 })
 
-
-//1. config, run, directives, controller, link functions
-// app.run(function ($rootScope, $state) {
-//    	//reserve for authentication 
-//   })
+app.run(function ($rootScope, $state, $rootScope, loader) {
+	$rootScope.$on('$stateChangeStart', function() {
+			loader.show();
+	});
+})
 
 
 

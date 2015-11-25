@@ -1,10 +1,10 @@
 app.controller('userController', function($state, $scope, homeFactory){
-	$scope.category = localStorage.getItem('category')
+	$scope.department = localStorage.getItem('category')
 	$scope.gender = localStorage.getItem('gender')
 	var formSelected = {
-		from: "2015-10-27",
-		to: "2015-10-28", 
-		category: $scope.category,
+		from: "2015-10-06",
+		to: "2015-10-15", 
+		department: $scope.department,
 		gender: $scope.gender	
 	}
 	$scope.customized = function(){

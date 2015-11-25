@@ -1,12 +1,19 @@
 <div class="container" style="margin: 100px">
 	<div class="col-xs-12">
 			<div class="row">
+				<button type="button" class="btn btn-md btn-primary" ng-click='ExportToExcel()'>Export page to excel</button>
+				<table>
+				<td><a href="http://imr.namshi.com/product/{{parentSku}}?angle=1&view=zoom"><img id="img" src="http://imr.namshi.com/product/{{parentSku}}?angle=1&view=catalog" class="img-polaroid">
+				</a></td>
+			</table>
 				<table class="table table-bordered">
 					<tr>
+							<th>Size</th>
 						  <th>Individual SKU</th>
 			    		<th>Available Stock</th> 
 					</tr>
 			   	<tr ng-repeat="sku in skuInfo">
+			   			<td>{{sku.Size}}</td>
 			   			<td>{{sku.Individual_SKUs}}</td>
 			   			<td>{{sku.Available_Stock}}</td>
 			   	</tr> 

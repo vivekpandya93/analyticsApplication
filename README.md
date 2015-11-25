@@ -1,1 +1,0 @@
-# buying.namshi.net

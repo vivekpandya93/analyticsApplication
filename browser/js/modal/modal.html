@@ -3,10 +3,13 @@
         <div class="modal-header">
             <h3 class="modal-title">Check your selections</h3>
         </div>
+         <div class="modal-header">
+            <h5 class="modal-title">Check your department</h5>
+        </div>
         <div class="modal-body">
-            <ul class = "btn-group btn-group-justified">
+            <ul class = "btn-group btn-group-justified" style="padding-left:0;">
                 <li ng-repeat="item in items" class = "btn-group btn-group-justified">
-                    <button type="button"  class="btn btn-default" ng-click="$event.preventDefault(); selected.item = item;">
+                    <button type="button"  class="btn btn-default" style="font-size:10px" ng-click="$event.preventDefault(); selected.item = item;">
                         <span class="glyphicon glyphicon-plus-sign" aria-hidden="true" ></span> {{item}}
                     </button>
                 </li>
@@ -15,9 +18,9 @@
 
         </div>
          <div class="modal-body">
-            <ul class = "btn-group btn-group-justified">
+            <ul class = "btn-group btn-group-justified" style="padding-left:0;">
                 <li ng-repeat="gendi in gender" class = "btn-group btn-group-justified">
-                    <button type="button" class="btn btn-default" ng-click="$event.preventDefault(); selected.gendi = gendi;">
+                    <button type="button" class="btn btn-default" style="font-size:10px" ng-click="$event.preventDefault(); selected.gendi = gendi;">
                         <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span> {{gendi}}
                     </button>
                 </li>
@@ -29,6 +32,5 @@
             <button class="btn btn-warning" type="button" ng-click="cancel()">Cancel</button>
         </div>
     </script>
-
-    <button type="button" class="btn btn-default" ng-click="open()">Open me!</button>
+    <button type="button" class="btn btn-default" ng-click="open()">Choose your Department!</button>
 </div>

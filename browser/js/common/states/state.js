@@ -6,21 +6,22 @@ app.config(function($stateProvider) {
     		controller: 'formController'
     	})
     	.state('results', {
-            url: '/results?from&to&category&gender',
+            url: '/results?from&to&department&category&gender',
             templateUrl: 'js/RevenueAllBrands/templates/results.html',
         	controller: 'resultsController'
         	})
     	.state('brand', {
-    		url: '/results/?name?from&to&category&gender',
+    		url: '/results/?name&department&from&to&category&gender',
     		templateUrl: 'js/styleInfo/brandStates.html',
     		controller: 'brandController',
             resolve:  {
-                one_brand: function(homeFactory, $stateParams, $location) {
+                one_brand: function(homeFactory, $stateParams, $location, $rootScope) {
                     var formInfo = $location.search();
+                    $rootScope.loading = false; 
                     console.log("STATEPARAMS: ", $stateParams)
                      console.log("formInfo: ", formInfo)
 
-                    return homeFactory.getOneBrand($stateParams.name)
+                    return homeFactory.getOneBrand($stateParams.name, $stateParams)
                 }
             }
     	})
@@ -29,9 +30,11 @@ app.config(function($stateProvider) {
             templateUrl: 'js/SKUInfo/sku.html',
             controller: 'skuController',
             resolve: {
-                one_sku: function(homeFactory, $stateParams) {
+                one_sku: function(homeFactory, $stateParams, $location, $rootScope) {
                     console.log("stateParams:", $stateParams)
-                    return homeFactory.getOneSku($stateParams.name, $stateParams.sku)
+                    var name = $location.search().name
+                    $rootScope.loading = false; 
+                    return homeFactory.getOneSku(name, $stateParams.sku)
                 }
             }
         })

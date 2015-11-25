@@ -21,7 +21,6 @@ function getConnection() {
 module.exports = {
 	query: function(query, args, cb){
 		connection = getConnection();
-
 		return connection.query(query, args, cb)
 	}
 }; 

@@ -1,0 +1,23 @@
+<div>
+    <script type="text/ng-template" id="myEmailModalContent.html">
+        <div class="modal-header">
+            <h3 class="modal-title">Send an Email</h3>
+        </div>
+        <div class="modal-body">
+            <form class="form-inline coolForm">
+                    Email: <input type="text" placeholder="Must be a namshi.com email" ng-model="email.recepient" class="form-control" name="email" size="40"><br>
+            </form>
+        </div>
+         <div class="modal-body">
+            <textarea rows="10" cols="50" placeholder="Enter a body" class="form-control" ng-model="email.message">
+
+            </textarea>
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-primary" type="button" ng-click="ok()">Send</button>
+            <button class="btn btn-warning" type="button" ng-click="cancel()">Cancel</button>
+        </div>
+    </script>
+
+    <button type="button" class="btn btn-md btn-primary" ng-click="open()">Send an Email!</button>
+</div>
