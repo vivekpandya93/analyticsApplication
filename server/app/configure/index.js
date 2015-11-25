@@ -1,8 +1,8 @@
-'use strict'
+'use strict';
 
 module.exports = function (app) {
 	/*
-		getValue and setValue are aliases for 
+		getValue and setValue are aliases for
 		app.set and app.get
 
 	*/
@@ -19,4 +19,4 @@ module.exports = function (app) {
     app.use(app.getValue('log'));
 
 
-}
+};

@@ -1,61 +1,25 @@
 var tpl = require('../tpl.js');
 var path = require('path');
-var queryAsString = ''
+var queryAsString = '';
+var config = require('../../config');
 
 module.exports = {
   get: function(fileName, options, customDirname) {
-    return tpl(path.join(customDirname || __dirname, fileName), options || {});
+    options = options || {};
+    options.env = config.get('env');
+    options.bobDb = config.get('mysql.dbs.bob');
+    options.namdexDb = config.get('mysql.dbs.namdex');
+    return tpl(path.join(customDirname || __dirname, fileName), options);
   },
 
   getRightQueryString: function(formData, name) {
+		var opts = [
+			!!formData.category,
+			!!formData.gender,
+			!!formData.specificCat
+		];
 
-	  if(formData.category) department = true 
-		else department = false
-
-		if(formData.gender) gender = true 
-		else gender = false 
-
-		if(formData.specificCat) category = true 
-		else category = false
-
-		var opts = {
-			category, 
-			gender,
-			department
-		}
-		
-		queryAsString = this.get(name, opts)
-		return queryAsString
-
- //  if(formData.category && !formData.gender) {
-	// 	queryAsString = this.get(name, 
-	// 	{
-	// 		department: true,
-	// 		gender: false
-	// 	})
-	// }
-	// else if(!formData.category && formData.gender) {
-	// 	queryAsString = this.get(name, 
-	// 	{
-	// 		department: false,
-	// 		gender: true 
-	// 	})
-	// }
-	// else if(formData.category && formData.gender) {
-	// 	queryAsString = this.get(name, 
-	// 	{
-	// 		department: true,
-	// 		genderProvided: true 
-	// 	})
-	// }
-	// else if (!formData.category && !formData.gender) {
-	// 	queryAsString = this.get(name, 
-	// 	{
-	// 		categoryProvided: false,
-	// 		genderProvided: false 
-	// 	})
-	// }
-	// return queryAsString
-
-}
+		queryAsString = this.get(name, opts);
+		return queryAsString;
+	}
 };

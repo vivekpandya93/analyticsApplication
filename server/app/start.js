@@ -24,7 +24,7 @@ var startServer = function () {
 };
 
 
-createApplication()
+createApplication();
 startServer();
 // startDb.then(createApplication).then(startServer).catch(function (err) {
 //     console.error(chalk.red(err.stack));

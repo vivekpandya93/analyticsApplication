@@ -1,0 +1,5 @@
+domain: namdv.net
+mysql:
+  dbs:
+    bob: namshi_{{ env }}
+    namdex: namdex_{{ env }}
