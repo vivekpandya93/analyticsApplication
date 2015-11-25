@@ -1,9 +1,10 @@
 <div class="container">
 			<div class="row">
+				<button type="button" class="btn btn-md btn-primary" ng-click='ExportToExcel()'>Export page to excel</button>
 			   	<ul>
 			   		<div ng-repeat="Stock in brandInfo" class="col-xs-12 col-sm-6 col-md-6 col-lg-4 ">	   		
 							<div class="card">
-							  <img class="card-img-top" ng-src="http://imr.namshi.com/product/{{Stock.SKU}}?angle=1&view=catalog" alt="Card image cap">
+							  <img class="card-img-top base64" id="img" ng-src="http://imr.namshi.com/product/{{Stock.SKU}}?angle=1&view=catalog" alt="Card image cap">
 							  <div class="card-block">
 							    <h4 class="card-title">{{Stock.Name}}</h4>
 							 </div>

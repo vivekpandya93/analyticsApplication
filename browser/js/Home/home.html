@@ -56,34 +56,57 @@
 	<div class="row">
 			<div class="well">
 				<form class="form-inline coolForm">
-					  <div class="form-group col-lg-3 col-md-3 col-sm-6 col-xs-12">
-								    <label for="Enter a start date">Start</label>
-								    <input type="text" class="form-control col-lg-4 col-md-6 col-sm-12" ng-model="formSelected.from",  data-output="formSelected.from", jqdatepicker placeholder="YY/MM/DD"/>
+					  <div class="form-group col-lg-2 col-md-3 col-sm-6 col-xs-12">
+								    <input type="text" class="form-control col-lg-4 col-md-6 col-sm-12" ng-model="formSelected.from",  data-output="formSelected.from", jqdatepicker placeholder="From: YY/MM/DD"/>
 					  </div>
-					  <div class="form-group col-lg-3 col-md-3 col-sm-6 col-xs-12 ">
-						    <label for="Enter an end date">End</label>
-							    <input type="text" class="form-control col-lg-4 col-md-6 col-sm-12" ng-model="formSelected.to", data-output="formSelected.to", jqdatepicker placeholder="YY/MM/DD"/>
+					  <div class="form-group col-lg-2 col-md-3 col-sm-6 col-xs-12 ">
+							    <input type="text" class="form-control col-lg-4 col-md-6 col-sm-12" ng-model="formSelected.to", data-output="formSelected.to", jqdatepicker placeholder="To: YY/MM/DD"/>
 					  </div>
-					  <div class="form-group col-lg-3 col-md-3 col-sm-6 col-xs-12 ">
-						    <label for="Enter a Category">Choose a category</label>
-							    <select ng-model="formSelected.category" type="text" class="form-control", placeholder="Category">
-							    	<option>All Categories</option>
-								    <option>Apparel</option>
-								    <option>Sports</option>
-								    <option>Accessories</option>
+					  <div class="form-group col-lg-2 col-md-3 col-sm-6 col-xs-12 ">
+							    <select ng-model="formSelected.department" type="text" class="form-control", placeholder="Department" ng-change="toggleView()">
+							    	<option value="" disabled selected>Department</option>
+							    	<option>Accessories</option>
+								    <option>Bags</option>
+								    <option>Clothing</option>
+								    <option>Shoes</option>
 									</select>
 					  </div>
-					  <div class="form-group col-lg-3 col-md-3 col-sm-6 col-xs-12">
-							   <label for="Enter a Gender">Choose a gender</label>
+					    <div class="form-group">
+								    <select ng-if="isBags" ng-model="formSelected.category" type="text" class="form-control", placeholder="Bag">
+								    	    <option value="" disabled selected>Category</option>
+													<option ng-repeat="bag in bags" value="{{bag}}">{{bag}}</option>									
+										</select>
+					  </div>
+					  <div class="form-group">
+								    <select ng-if="isClothing" ng-model="formSelected.category" type="text" class="form-control", placeholder="Clothing">
+								    	    <option value="" disabled selected>Category</option>
+													<option ng-repeat="cloth in clothing" value="{{cloth}}">{{cloth}}</option>									
+										</select>
+					  </div>
+					  <div class="form-group">
+								    <select ng-if="isAccesory" ng-model="formSelected.category" type="text" class="form-control", placeholder="Accessory">
+													<option value="" disabled selected>Category</option>
+													<option ng-repeat="Accesory in accessories" value="{{Accesory}}">{{Accesory}}</option>									
+										</select>
+					  </div>
+					  <div class="form-group">
+								    <select ng-if="isShoes" ng-model="formSelected.category" type="text" class="form-control", placeholder="Shoe">
+								 					<option value="" disabled selected>Category</option>
+													<option ng-repeat="shoe in shoes" value="{{shoe}}">{{shoe}}</option>									
+										</select>
+					  </div>
+					  <div class="form-group">
 								    <select ng-model="formSelected.gender" type="text" class="form-control", placeholder="Gender">
-								    		<option>Any</option>
-										    <option>Male</option>
-										    <option>Unisex</option>
+								    	  <option value="" disabled selected>Gender</option>
+								    		<option>Male</option>
 										    <option>Female</option>
+										    <option>Boy</option>
+										    <option>Girl</option>
 										</select>
 					  </div>
 			     	<div class="form-group col-xs-12 pull-left">
 			     				<button type="button" class="btn btn-lg btn-primary" ng-click='goTo()'>Submit</button>
+
 			   		</div>
 						<modal></modal>
 				</form>

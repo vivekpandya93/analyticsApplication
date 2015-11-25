@@ -1,8 +1,8 @@
 app.controller('ModalCtrl',  function ($scope, $uibModal, $log) {
 
-  $scope.items = ['Any', 'Apparel', 'Accessories', 'Sports'];
+  $scope.items = ['Bags', 'Clothing', 'Accessories', 'Shoes'];
 
-  $scope.gender = ['All', 'Male', 'Female', 'Unisex']
+  $scope.gender = ['Male', 'Female', 'Boy', 'Girl']
 
   // $scope.selectedGender = $scope.selected.gendi; 
 
