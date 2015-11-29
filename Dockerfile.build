@@ -1,9 +1,13 @@
-FROM mhart/alpine-node:4.2
+FROM node:4
 
 MAINTAINER Luciano Colosio "luciano.colosio@namshi.com"
+
+RUN npm install -g nodemon
 
 COPY . /src
 
 WORKDIR /src
+
+RUN npm install
 
 CMD ["node", "server/app/start.js"]

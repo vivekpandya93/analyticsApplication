@@ -1,0 +1,9 @@
+buying:
+  build:
+    dockerfile: Dockerfile.build
+    extract: /src
+  notify:
+  - github
+  - emailSes
+  registry: namshi.net
+  revfile: public

@@ -1,6 +1,6 @@
-qc:
+buying:
   build: .
-  dockerfile: Dockerfile
+  dockerfile: Dockerfile.build
   volumes:
     - .:/src
   ports:

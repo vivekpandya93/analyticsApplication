@@ -1,0 +1,21 @@
+domain: namshi.net
+mysql:
+  server:
+    host: locahost
+    user: root
+    password: pass
+  dbs:
+    bob: bob_{{ env }}
+    namdex: zeus_{{ env }}
+apps:
+  karl:
+    user: tech_user
+    passwword: tech1234
+api:
+  protocol: 'https'
+  domain: 'namshi.com'
+  port: 443
+  hostName: 'api.{{ apis.domain }}'
+  baseUrl: '{{ apis.protocol }}://{{ apis.hostName }}:{{ apis.port }}'
+  karl:
+    emailAllert: '{{ apis.baseUrl }}/karl/email/ops_alerts'
