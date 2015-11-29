@@ -5,16 +5,16 @@ app.controller('resultsController', function($state, $location, $scope, homeFact
 					loader.hide();
 					$scope.values = data; 
 				});
-				console.log("data before results from DATA SERVICE:", $scope.values)
 			}		
 
 		$scope.goToBrands = function ($event) {			
 			formSelected.name = $event.target.innerText; 
-			console.log("formSelected.name:", $event.target.innerText)
 			$state.go('brand', formSelected)
 		}
 
+		var name = $location.search().department
+
 		$scope.ExportToExcel = function() {
-			 alasql('SELECT * INTO XLSX("brandInfo.xlsx",{headers:true}) FROM ?',[$scope.values]);
+			 alasql('SELECT * INTO XLSX("'+name+'.xlsx",{headers:true}) FROM ?',[$scope.values]);
     };
 })

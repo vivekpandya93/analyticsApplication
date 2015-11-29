@@ -17,7 +17,6 @@ app.config(function($stateProvider) {
             resolve:  {
                 one_brand: function(homeFactory, $stateParams, $location, $rootScope) {
                     var formInfo = $location.search();
-                    $rootScope.loading = false; 
                     console.log("STATEPARAMS: ", $stateParams)
                      console.log("formInfo: ", formInfo)
 
@@ -33,15 +32,9 @@ app.config(function($stateProvider) {
                 one_sku: function(homeFactory, $stateParams, $location, $rootScope) {
                     console.log("stateParams:", $stateParams)
                     var name = $location.search().name
-                    $rootScope.loading = false; 
                     return homeFactory.getOneSku(name, $stateParams.sku)
                 }
             }
-        })
-        .state('user_profile', {
-         url: '/profile',
-         templateUrl: 'js/user_profile/profile.html', 
-         controller: 'userController' 
         })
    })
 

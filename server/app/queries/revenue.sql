@@ -34,7 +34,7 @@ and (case when {{ namdexDb }}.sales_order_item.product_age_group <> "Adult" && {
 		(case when {{ namdexDb }}.sales_order_item.product_age_group <> "Adult" && {{ namdexDb }}.sales_order_item.product_gender = "Male" then "Boy" 
 		 when {{ namdexDb }}.sales_order_item.product_age_group <> "Adult" && {{ namdexDb }}.sales_order_item.product_gender ="Female" then "Girl"
      else {{ namdexDb }}.sales_order_item.product_gender end) in ('Boy' , 'Girl', 'Male', 'Female')
-{%endif%}
+{% endif %}
 
 {% if department %}
 	and {{ bobDb }}_ae.catalog_attribute_option_global_department.name = ?
@@ -44,7 +44,7 @@ and (case when {{ namdexDb }}.sales_order_item.product_age_group <> "Adult" && {
 
 {% if category %}
 	and {{ bobDb }}_ae.catalog_attribute_option_global_category.name = ?
-{%endif%}
+{% endif %}
 and {{ namdexDb }}.sales_order_item.status_waterfall = 1
 and {{ namdexDb }}.sales_order_item.status_name <> 'canceled'
 group by product_brand, {{ bobDb }}_ae.catalog_attribute_option_global_department.name,

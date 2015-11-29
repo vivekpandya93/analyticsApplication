@@ -1,7 +1,11 @@
-app.controller('emailModalCtrl',  function ($scope, $uibModal, $log) {
-  $scope.email = {}
+app.controller('emailModalCtrl',  function ($scope, $uibModal, $log, $window) {
+  
   $scope.animationsEnabled = true;
   $scope.open = function (size) {
+    $scope.query = $window.location.href
+    console.log("$scope", $scope.query)
+    $scope.email = {}
+    $scope.email.message = $scope.query
     var modalInstance = $uibModal.open({
       animation: $scope.animationsEnabled,
       templateUrl: 'myEmailModalContent.html',
@@ -13,7 +17,6 @@ app.controller('emailModalCtrl',  function ($scope, $uibModal, $log) {
         }
       }
     });
-
     modalInstance.result.then(function (selectedItem) {
       $scope.selected = selectedItem;
     }, function () {
@@ -26,7 +29,8 @@ app.controller('emailModalCtrl',  function ($scope, $uibModal, $log) {
   };
 })
 
-app.controller('emailModalInstanceCtrl', function ($scope, $uibModalInstance, email, homeFactory) {
+app.controller('emailModalInstanceCtrl', function ($scope, $uibModalInstance, email, homeFactory, $location) {
+  $scope.query = $location.search();
   $scope.email = email;
   $scope.selected = {
     emailInfo: $scope.email

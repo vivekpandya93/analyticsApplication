@@ -10,9 +10,19 @@ var getQuery = function(name) {
 
 var formData = {};
 
+
 router.get('/', function(req, res){
 	formData = req.query;
-		console.log('formData', formData);
+
+	if(formData.department === "All Departments") {
+		formData.department = undefined; 
+		formData.category = undefined;
+	}
+		if(formData.gender === "All Genders") {
+		formData.gender = undefined; 
+	}
+	
+	console.log('formData', formData);
 	var queryString = queries.getRightQueryString(formData, 'revenue.sql');
 	db.query(queryString,[formData.from,formData.to, formData.gender, formData.department, formData.category], function(err, rows) {
 		console.log('query', queryString);
@@ -20,9 +30,23 @@ router.get('/', function(req, res){
 	  	throw err;
 	  }
 
-	  res.json({result: rows});
-	});
-});
+
+/*router.get('/:name', function(req,res,next){
+	formData = req.query;	
+	if(formData.department === "All Departments") {
+		formData.department = undefined; 
+	}
+	if(formData.gender === "All Genders") {
+		formData.gender = undefined; 
+	}
+	formData.spaced_name = req.params.name.split('_').join(' ')
+	var queryString = queries.getRightQueryString(formData, 'IndividualBrandInfo.sql') 
+		db.query(queryString, [formData.from, formData.to, formData.name, formData.department, formData.gender, formData.category],
+			function(err, rows, fields) {
+		  if (err) throw err;
+		  res.json({result: rows});
+		});
+})*/
 
 router.get('/:name', function(req, res){
 	formData = req.query;

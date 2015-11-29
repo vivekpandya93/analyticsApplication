@@ -1,11 +1,12 @@
 app.controller('navbarController', function($state, $scope, homeFactory, dataService, $rootScope, $location){
 	 	$rootScope.parameters = {};
-	 	$scope.newParams = {}
-	 	$scope.originalParams = $location.search()
+
+	 	// $scope.formSelected =  {};
+	 	// $scope.originalParams =  $rootScope.params
+	  // console.log("ROOT:", $rootScope.params)
 
 	  homeFactory.getBuyerInfo().then(function(name){
 	  		$scope.name = name;
-	  		console.log("original Params:", $scope.originalParams)
 	  })
 
 	  if($location.search().category){
@@ -13,7 +14,7 @@ app.controller('navbarController', function($state, $scope, homeFactory, dataSer
 	  }
 
 	 	$scope.ExecuteThis = function() {
-	 			$state.go('results', $scope.newParams)
+	 			$state.go('results', $scope.formSelected)
 	 		
 	 	}
 	 	$scope.isClicked = function() {
@@ -78,26 +79,32 @@ app.controller('navbarController', function($state, $scope, homeFactory, dataSer
 		"Sports Bags"
 		] 
 		$scope.toggleView = function() {
-			console.log("inside here and", $scope.newParams.department)
-		if($scope.newParams.department === "Bags" && $location.search().category) {
+			console.log("inside here and", $location.search())
+	 	if($scope.formSelected.department === "All Departments") {
+	 			$scope.isBags = false
+				$scope.isAccesory = false;
+				$scope.isShoes = false;
+				$scope.isClothing = false;
+	 	}
+		if($scope.formSelected.department === "Bags") {
 				$scope.isBags = true
 				$scope.isAccesory = false;
 				$scope.isShoes = false;
 				$scope.isClothing = false;
 			}
-		else if($scope.newParams.department === "Clothing" && $location.search().category) {
+		else if($scope.formSelected.department === "Clothing") {
 				$scope.isBags = false
 				$scope.isAccesory = false;
 				$scope.isShoes = false;
 				$scope.isClothing = true;
 			}
-		else if($scope.newParams.department === "Accessories" && $location.search().category) {
+		else if($scope.formSelected.department === "Accessories") {
 				$scope.isBags = false
 				$scope.isAccesory = true;
 				$scope.isShoes = false;
 				$scope.isClothing = false;
 			}
-		else if($scope.newParams.department === "Shoes" && $location.search().category) {
+		else if($scope.formSelected.department === "Shoes") {
 				$scope.isBags = false
 				$scope.isAccesory = false;
 				$scope.isShoes = true;
@@ -105,4 +112,6 @@ app.controller('navbarController', function($state, $scope, homeFactory, dataSer
 			}
 
 		}
+
+		$scope.toggleView();
 })

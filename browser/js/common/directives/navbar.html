@@ -39,51 +39,49 @@
 
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse collapse" ng-class="{in: collapsed}">
-      <ul class="nav navbar-nav">
-        <li><a ui-sref="user_profile">Daily highlights!</a></li>
-
-      </ul>
       <form class="navbar-form navbar-left col-lg-2 col-md-1 col-sm-12" ng-if="isClicked()" role="search">
         <div class="form-group" id ="navBar">
-          <input type="text" class="form-control col-lg-2 col-md-6 col-sm-12" ng-model="newParams.from",  data-output="newParams.from", jqdatepicker placeholder="{{originalParams.from}}"/>
-           <input type="text" class="form-control col-lg-2 col-md-6 col-sm-12" ng-model="newParams.to",  data-output="newParams.to", jqdatepicker placeholder="{{originalParams.to}}"/>
+          <input type="text" class="form-control col-lg-2 col-md-6 col-sm-12" ng-model="formSelected.from",  data-output="formSelected.from", jqdatepicker placeholder="{{formSelected.from}}"/>
+           <input type="text" class="form-control col-lg-2 col-md-6 col-sm-12" ng-model="formSelected.to",  data-output="formSelected.to", jqdatepicker placeholder="{{formSelected.to}}"/>
  
-                  <select ng-model="newParams.department" type="text" class="form-control", placeholder="Department" ng-change="toggleView()">
-                  <option value="" disabled selected>{{originalParams.department}}</option>
+                  <select ng-model="formSelected.department" type="text" class="form-control", placeholder="{{formSelected.department}}" ng-change="toggleView()">
+                  <option>All Departments</option>
                   <option>Accessories</option>
                     <option>Bags</option>
                     <option>Clothing</option>
                     <option>Shoes</option>
                   </select>
-                    <select ng-if="isBags" ng-model="newParams.category" class="form-control" type="text", placeholder="Bag">
-                          <option value="" disabled selected>{{originalParams.category}}</option>
+                    <select ng-if="isBags" ng-model="formSelected.category" class="form-control" type="text", placeholder="{{formSelected.category}}">
+                          <option value="" disabled selected>{{formSelected.category}}</option>
                           <option ng-repeat="bag in bags" value="{{bag}}">{{bag}}</option>                  
                     </select>
             
             
-                    <select ng-if="isClothing" ng-model="newParams.category" class="form-control" type="text" , placeholder="Clothing">
-                          <option value="" disabled selected>{{originalParams.category}}</option>
+                    <select ng-if="isClothing" ng-model="formSelected.category" class="form-control" type="text" , placeholder="{{formSelected.category}}">
+                          <option value="" disabled selected>{{formSelected.category}}</option>
                           <option ng-repeat="cloth in clothing" value="{{cloth}}">{{cloth}}</option>                  
                     </select>
             
             
-                    <select ng-if="isAccesory" ng-model="newParams.category" class="form-control" type="text" , placeholder="Accessory">
-                          <option value="" disabled selected>{{originalParams.category}}</option>
+                    <select ng-if="isAccesory" ng-model="formSelected.category" class="form-control" type="text" , placeholder="{{formSelected.category}}">
+                          <option value="" disabled selected>{{formSelected.category}}</option>
                           <option ng-repeat="Accesory in accessories"  value="{{Accesory}}">{{Accesory}}</option>                  
                     </select>
             
             
-                    <select ng-if="isShoes" ng-model="newParams.category" class="form-control" type="text" , placeholder="Shoe">
-                          <option value="" disabled selected>{{originalParams.category}}</option>
+                    <select ng-if="isShoes" ng-model="formSelected.category" class="form-control" type="text" , placeholder="{{formSelected.category}}">
+                          <option value="" disabled selected>{{formSelected.category}}</option>
                           <option ng-repeat="shoe in shoes" value="{{shoe}}">{{shoe}}</option>                  
                     </select>
             
-                    <select ng-model="newParams.gender" type="text" class="form-control" , placeholder="Gender">
-                        <option value="" disabled selected>{{originalParams.gender}}</option>
+                    <select ng-model="formSelected.gender" type="text" class="form-control" , placeholder="{{formSelected.gender}}">
+                        <option value="" disabled selected>{{formSelected.gender}}</option>
+                        <option>All Genders</option>
                         <option>Male</option>
                         <option>Female</option>
                         <option>Boy</option>
                         <option>Girl</option>
+
                     </select>
             
            <div class="cta-group">

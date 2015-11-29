@@ -8,9 +8,17 @@ app.config(function ($urlRouterProvider, $locationProvider){
 
 })
 
-app.run(function ($rootScope, $state, $rootScope, loader) {
+app.run(function ($rootScope, $state, $rootScope, loader, $location) {
+	// @TODO: Model for the navbar/home forms
+	$rootScope.formSelected = {};
+
+
 	$rootScope.$on('$stateChangeStart', function() {
 			loader.show();
+
+	});
+	$rootScope.$on('$stateChangeSuccess', function() {
+			angular.extend($rootScope.formSelected, $location.search());
 	});
 })
 
