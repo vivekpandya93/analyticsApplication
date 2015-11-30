@@ -12,7 +12,7 @@ apps:
   karl:
     user: tech_user
     passwword: tech1234
-api:
+apis:
   protocol: 'https'
   domain: 'namshi.com'
   port: 443
