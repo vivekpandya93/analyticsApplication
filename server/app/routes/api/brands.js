@@ -8,18 +8,19 @@ var getQuery = function(name) {
 	return fs.readFileSync(path.join(__dirname, '../..', 'queries', `${name}.sql`)).toString('utf8');
 };
 
-var formData = {};
-
-
 router.get('/', function(req, res) {
-	formData = req.query;
+	var formData = req.query;
 
 	if(formData.department === 'All Departments') {
-		formData.department = undefined;
-		formData.category = undefined;
+		delete formData.department;
+		delete formData.category;
 	}
-		if(formData.gender === 'All Genders') {
-		formData.gender = undefined;
+	if(formData.gender === 'All Genders') {
+		delete formData.gender;
+	}
+
+	if(formData.category === 'All Categories') {
+		delete formData.category;
 	}
 
 	console.log('formData', formData);
@@ -35,20 +36,19 @@ router.get('/', function(req, res) {
 
 
 router.get('/:name', function(req, res){
-	formData = req.query;
+	var formData = req.query;
 
 	if(formData.department === 'All Departments') {
-		formData.department = undefined;
-		formData.category = undefined;
-
+		delete formData.department;
+		delete formData.category;
 	}
 
 	if(formData.gender === 'All Genders') {
-		formData.gender = undefined;
+		delete formData.gender;
 	}
 
 	if(formData.category === 'All Categories') {
-		formData.category = undefined;
+		delete formData.category;
 	}
 
 	formData.spaced_name = req.params.name.split('_').join(' ');

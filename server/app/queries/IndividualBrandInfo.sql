@@ -26,11 +26,7 @@ on {{ bobDb }}_ae.catalog_source.fk_catalog_simple = {{ bobDb }}_ae.catalog_simp
 right join {{ bobDb }}_ae.catalog_stock
 on {{ bobDb }}_ae.catalog_source.id_catalog_source = {{ bobDb }}_ae.catalog_stock.fk_catalog_source
 
-where ({{ bobDb }}.sales_order_item.id_sales_order_item, {{ bobDb }}.sales_order_item.db)
-  IN (SELECT {{ bobDb }}.sales_order_item.id_sales_order_item,
-             {{ bobDb }}.sales_order_item.db
-      FROM {{ bobDb }}.sales_order_item
-      WHERE {{ bobDb }}.sales_order_item.ordered_at between "{{from}}" and "{{to}}")
+where {{ bobDb }}.sales_order_item.ordered_at between "{{from}}" and "{{to}}"
 and status_waterfall = 1
 and {{ namdexDb }}.sales_order_item.product_brand = "{{spaced_name}}"
 and status_name not in ('canceled','test_invalid')
