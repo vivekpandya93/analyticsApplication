@@ -26,13 +26,13 @@ where ({{ namdexDb }}.sales_order_item.id_sales_order_item, {{ namdexDb }}.sales
 	IN (SELECT {{ namdexDb }}.sales_order_item.id_sales_order_item,
 		         {{ namdexDb }}.sales_order_item.db
 		  FROM {{ namdexDb }}.sales_order_item
-		  WHERE {{ namdexDb }}.sales_order_item.ordered_at between ? and ?)
+		  WHERE {{ namdexDb }}.sales_order_item.ordered_at between "{{from}}" and "{{to}}")
 
 
 {% if gender %}
 and (case when {{ namdexDb }}.sales_order_item.product_age_group <> "Adult" && {{ namdexDb }}.sales_order_item.product_gender = "Male" then "Boy"
 		  when {{ namdexDb }}.sales_order_item.product_age_group <> "Adult" && {{ namdexDb }}.sales_order_item.product_gender ="Female" then "Girl"
-     else {{ namdexDb }}.sales_order_item.product_gender end) = ?
+     else {{ namdexDb }}.sales_order_item.product_gender end) = "{{gender}}"
 {% else %}
 		and (case when {{ namdexDb }}.sales_order_item.product_age_group <> "Adult" && {{ namdexDb }}.sales_order_item.product_gender = "Male" then "Boy"
 		 when {{ namdexDb }}.sales_order_item.product_age_group <> "Adult" && {{ namdexDb }}.sales_order_item.product_gender ="Female" then "Girl"
@@ -40,13 +40,13 @@ and (case when {{ namdexDb }}.sales_order_item.product_age_group <> "Adult" && {
 {% endif %}
 
 {% if department %}
-	and {{ bobDb }}_ae.catalog_attribute_option_global_department.name = ?
+	and {{ bobDb }}_ae.catalog_attribute_option_global_department.name = "{{department}}"
 {% else %}
 	and {{ bobDb }}_ae.catalog_attribute_option_global_department.name in ('Accessories', 'Bags', 'Clothing', 'Shoes')
 {%endif%}
 
 {% if category %}
-	and {{ bobDb }}_ae.catalog_attribute_option_global_category.name = ?
+	and {{ bobDb }}_ae.catalog_attribute_option_global_category.name = "{{category}}"
 {% endif %}
 and {{ namdexDb }}.sales_order_item.status_waterfall = 1
 and {{ namdexDb }}.sales_order_item.status_name <> 'canceled'

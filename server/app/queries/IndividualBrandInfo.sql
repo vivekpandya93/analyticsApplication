@@ -30,30 +30,30 @@ where ({{ bobDb }}.sales_order_item.id_sales_order_item, {{ bobDb }}.sales_order
   IN (SELECT {{ bobDb }}.sales_order_item.id_sales_order_item,
              {{ bobDb }}.sales_order_item.db
       FROM {{ bobDb }}.sales_order_item
-      WHERE {{ bobDb }}.sales_order_item.ordered_at between ? and ?)
+      WHERE {{ bobDb }}.sales_order_item.ordered_at between "{{from}}" and "{{to}}")
 and status_waterfall = 1
-and {{ namdexDb }}.sales_order_item.product_brand = ?
+and {{ namdexDb }}.sales_order_item.product_brand = "{{spaced_name}}"
 and status_name not in ('canceled','test_invalid')
 
 {% if department %}
-	and {{ bobDb }}_ae.catalog_attribute_option_global_department.name = ?
+	and {{ bobDb }}_ae.catalog_attribute_option_global_department.name = "{{department}}"
 {% else %}
-	{{ bobDb }}_ae.catalog_attribute_option_global_department.name in ('Accessories', 'Bags', 'Clothing', 'Shoes')
+	and {{ bobDb }}_ae.catalog_attribute_option_global_department.name in ('Accessories', 'Bags', 'Clothing', 'Shoes')
 {%endif%}
 
 {% if gender %}
-and (case when {{ namdexDb }}.sales_order_item.product_age_group <> "Adult" && {{ namdexDb }}.sales_order_item.product_gender = "Male" then "Boy" 
+and (case when {{ namdexDb }}.sales_order_item.product_age_group <> "Adult" && {{ namdexDb }}.sales_order_item.product_gender = "Male" then "Boy"
 		  when {{ namdexDb }}.sales_order_item.product_age_group <> "Adult" && {{ namdexDb }}.sales_order_item.product_gender ="Female" then "Girl"
-     else {{ namdexDb }}.sales_order_item.product_gender end) = ?
+     else {{ namdexDb }}.sales_order_item.product_gender end) = "{{gender}}"
 
 {% else %}
-		(case when {{ namdexDb }}.sales_order_item.product_age_group <> "Adult" && {{ namdexDb }}.sales_order_item.product_gender = "Male" then "Boy" 
+		and (case when {{ namdexDb }}.sales_order_item.product_age_group <> "Adult" && {{ namdexDb }}.sales_order_item.product_gender = "Male" then "Boy"
 		 when {{ namdexDb }}.sales_order_item.product_age_group <> "Adult" && {{ namdexDb }}.sales_order_item.product_gender ="Female" then "Girl"
      else {{ namdexDb }}.sales_order_item.product_gender end) in ('Boy' , 'Girl', 'Male', 'Female')
 {% endif %}
 
 {% if category %}
-	and {{ bobDb }}_ae.catalog_attribute_option_global_category.name = ?
+	and {{ bobDb }}_ae.catalog_attribute_option_global_category.name = "{{category}}"
 {%endif%}
 
 and {{ namdexDb }}.sales_order_item.status_waterfall = 1

@@ -1,5 +1,9 @@
 domain: namdv.net
 mysql:
+  server:
+    host: mysql_1
+    user: root
+    password: root
   dbs:
     bob: namshi_{{ env }}
     namdex: namdex_{{ env }}

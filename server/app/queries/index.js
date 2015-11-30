@@ -13,13 +13,11 @@ module.exports = {
   },
 
   getRightQueryString: function(formData, name) {
-		var opts = [
-			!!formData.category,
-			!!formData.gender,
-			!!formData.specificCat
-		];
+    queryAsString = this.get(name, formData);
 
-		queryAsString = this.get(name, opts);
+    console.log('query:: getRightQueryString opts --> ', formData);
+    console.log('query:: getRightQueryString queryAsString --> ', queryAsString);
+
 		return queryAsString;
 	}
 };

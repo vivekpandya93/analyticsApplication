@@ -13,7 +13,7 @@ function getUserByFrontier(req, res, next) {
   var jws = req.cookies['_nmid_secure'] || null;
   var token = (jws) ? JWS.decode(jws) : null;
   req.user = (token) ? token.payload : { email: null, roles: []};
-  /**
+  req.user = {
     email: "luciano.colosio@namshi.com",
       roles: [
        "user",
@@ -32,8 +32,7 @@ function getUserByFrontier(req, res, next) {
       deploy: "zeus, qc",
       exp: 1447369713,
       iat: 1447326513
-    }
-    */
+    };
 
   next();
 }
