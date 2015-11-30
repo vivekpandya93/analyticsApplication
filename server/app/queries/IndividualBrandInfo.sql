@@ -1,7 +1,8 @@
 select  {{ namdexDb }}.sales_order_item.product_name as Name,
-		{{ namdexDb }}.sales_order_item.sku_config as SKU,
-		sum({{ namdexDb }}.sales_order_item.paid_price) as Revenue,
-        count(*) as UnitsSold
+	{{ namdexDb }}.sales_order_item.sku_config as SKU,
+	sum({{ namdexDb }}.sales_order_item.paid_price) as Revenue,
+  sum({{ namdexDb }}_ae.catalog_stock.quantity) as Available_Stock,
+  count(*) as UnitsSold
 from {{ namdexDb }}.sales_order_item
 
 inner join {{ bobDb }}_ae.catalog_config
@@ -16,7 +17,20 @@ on {{ bobDb }}_ae.catalog_attribute_option_global_gender_new.id_catalog_attribut
 inner join {{ bobDb }}_ae.catalog_attribute_option_global_category
 on {{ bobDb }}_ae.catalog_attribute_option_global_category.id_catalog_attribute_option_global_category = {{ bobDb }}_ae.catalog_config.fk_catalog_attribute_option_global_category
 
-where {{ namdexDb }}.sales_order_item.ordered_at between ? and ?
+right join {{ bobDb }}_ae.catalog_simple
+on {{ bobDb }}_ae.catalog_simple.sku = namdex_dev.sales_order_item.sku
+
+right join {{ bobDb }}_ae.catalog_source
+on {{ bobDb }}_ae.catalog_source.fk_catalog_simple = {{ bobDb }}_ae.catalog_simple.id_catalog_simple
+
+right join {{ bobDb }}_ae.catalog_stock
+on {{ bobDb }}_ae.catalog_source.id_catalog_source = {{ bobDb }}_ae.catalog_stock.fk_catalog_source
+
+where ({{ bobDb }}.sales_order_item.id_sales_order_item, {{ bobDb }}.sales_order_item.db)
+  IN (SELECT {{ bobDb }}.sales_order_item.id_sales_order_item,
+             {{ bobDb }}.sales_order_item.db
+      FROM {{ bobDb }}.sales_order_item
+      WHERE {{ bobDb }}.sales_order_item.ordered_at between ? and ?)
 and status_waterfall = 1
 and {{ namdexDb }}.sales_order_item.product_brand = ?
 and status_name not in ('canceled','test_invalid')

@@ -1,6 +1,6 @@
 app.factory('homeFactory', function($http){
 	 var path = '/api/brands/';
-	 
+	
 	 function extractData (serverResponse) { 
 	  	return serverResponse.data.result; 
 	  }
