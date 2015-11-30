@@ -18,7 +18,7 @@ inner join {{ bobDb }}_ae.catalog_attribute_option_global_category
 on {{ bobDb }}_ae.catalog_attribute_option_global_category.id_catalog_attribute_option_global_category = {{ bobDb }}_ae.catalog_config.fk_catalog_attribute_option_global_category
 
 right join {{ bobDb }}_ae.catalog_simple
-on {{ bobDb }}_ae.catalog_simple.sku = namdex_dev.sales_order_item.sku
+on {{ bobDb }}_ae.catalog_simple.sku = {{ namdexDb }}.sales_order_item.sku
 
 right join {{ bobDb }}_ae.catalog_source
 on {{ bobDb }}_ae.catalog_source.fk_catalog_simple = {{ bobDb }}_ae.catalog_simple.id_catalog_simple
