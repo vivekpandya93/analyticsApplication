@@ -18,8 +18,8 @@ inner join {{ bobDb }}_ae.catalog_attribute_option_global_category
 on {{ bobDb }}_ae.catalog_attribute_option_global_category.id_catalog_attribute_option_global_category = {{ bobDb }}_ae.catalog_config.fk_catalog_attribute_option_global_category
 
 
-inner join {{ cerberus }}_ae.stock_summary
-on {{cerberus}}_ae.stock_summary.simple_sku = {{namdexDb}}.sales_order_item.sku
+inner join {{ cerberus }}_staging.stock_summary
+on {{ cerberus }}_staging.stock_summary.simple_sku = {{namdexDb}}.sales_order_item.sku
 
 
 where {{ bobDb }}.sales_order_item.ordered_at between "{{from}}" and "{{to}}"
