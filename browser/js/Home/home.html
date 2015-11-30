@@ -66,7 +66,8 @@
 					  </div>
 					  <div class="form-group col-lg-2 col-md-3 col-sm-6 col-xs-12 ">
 							    <select ng-model="formSelected.department" type="text" class="form-control", placeholder="Department" ng-change="toggleView()">
-							    	<option value="" disabled selected>All Departments</option>
+									 <option value="" disabled selected>Department</option>
+							    	<option>All Departments</option>
 							    	<option>Accessories</option>
 								    <option>Bags</option>
 								    <option>Clothing</option>
@@ -76,30 +77,35 @@
 					    <div class="form-group">
 								    <select ng-if="isBags" ng-model="formSelected.category" type="text" class="form-control", placeholder="Bag">
 								    	    <option value="" disabled selected>Category</option>
+								    	    <option>All Categories</option>
 													<option ng-repeat="bag in bags" value="{{bag}}">{{bag}}</option>									
 										</select>
 					  </div>
 					  <div class="form-group">
 								    <select ng-if="isClothing" ng-model="formSelected.category" type="text" class="form-control", placeholder="Clothing">
 								    	    <option value="" disabled selected>Category</option>
+								    	    <option>All Categories</option>
 													<option ng-repeat="cloth in clothing" value="{{cloth}}">{{cloth}}</option>									
 										</select>
 					  </div>
 					  <div class="form-group">
 								    <select ng-if="isAccesory" ng-model="formSelected.category" type="text" class="form-control", placeholder="Accessory">
 													<option value="" disabled selected>Category</option>
+													<option>All Categories</option>
 													<option ng-repeat="Accesory in accessories" value="{{Accesory}}">{{Accesory}}</option>									
 										</select>
 					  </div>
 					  <div class="form-group">
 								    <select ng-if="isShoes" ng-model="formSelected.category" type="text" class="form-control", placeholder="Shoe">
 								 					<option value="" disabled selected>Category</option>
+								 					<option>All Categories</option>
 													<option ng-repeat="shoe in shoes" value="{{shoe}}">{{shoe}}</option>									
 										</select>
 					  </div>
 					  <div class="form-group">
 								    <select ng-model="formSelected.gender" type="text" class="form-control", placeholder="Gender">
-								    	  <option value="" disabled selected>All Genders</option>
+								    		<option value="" disabled selected>Gender</option>
+								    	  <option>All Genders</option>
 								    		<option>Male</option>
 										    <option>Female</option>
 										    <option>Boy</option>

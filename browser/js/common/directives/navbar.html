@@ -53,24 +53,28 @@
                   </select>
                     <select ng-if="isBags" ng-model="formSelected.category" class="form-control" type="text", placeholder="{{formSelected.category}}">
                           <option value="" disabled selected>{{formSelected.category}}</option>
+                          <option>All Categories</option>
                           <option ng-repeat="bag in bags" value="{{bag}}">{{bag}}</option>                  
                     </select>
             
             
                     <select ng-if="isClothing" ng-model="formSelected.category" class="form-control" type="text" , placeholder="{{formSelected.category}}">
                           <option value="" disabled selected>{{formSelected.category}}</option>
+                          <option>All Categories</option>
                           <option ng-repeat="cloth in clothing" value="{{cloth}}">{{cloth}}</option>                  
                     </select>
             
             
                     <select ng-if="isAccesory" ng-model="formSelected.category" class="form-control" type="text" , placeholder="{{formSelected.category}}">
                           <option value="" disabled selected>{{formSelected.category}}</option>
+                          <option>All Categories</option>
                           <option ng-repeat="Accesory in accessories"  value="{{Accesory}}">{{Accesory}}</option>                  
                     </select>
             
             
                     <select ng-if="isShoes" ng-model="formSelected.category" class="form-control" type="text" , placeholder="{{formSelected.category}}">
                           <option value="" disabled selected>{{formSelected.category}}</option>
+                          <option>All Categories</option>
                           <option ng-repeat="shoe in shoes" value="{{shoe}}">{{shoe}}</option>                  
                     </select>
             
