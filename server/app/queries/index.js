@@ -1,6 +1,5 @@
 var tpl = require('../tpl.js');
 var path = require('path');
-var queryAsString = '';
 var config = require('../../config');
 
 module.exports = {
@@ -13,10 +12,9 @@ module.exports = {
   },
 
   getRightQueryString: function(formData, name) {
-    queryAsString = this.get(name, formData);
+    var queryAsString = this.get(name, formData);
 
-    console.log('query:: getRightQueryString opts --> ', formData);
-    console.log('query:: getRightQueryString queryAsString --> ', queryAsString);
+    console.log('query:: getRightQueryString queryAsString (' + name + ')--> ', queryAsString.replace('\n', ' '));
 
 		return queryAsString;
 	}
