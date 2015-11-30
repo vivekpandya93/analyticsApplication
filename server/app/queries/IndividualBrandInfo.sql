@@ -22,7 +22,8 @@ inner join {{ cerberus }}.stock_summary
 on {{ cerberus }}.stock_summary.simple_sku = {{namdexDb}}.sales_order_item.sku
 
 
-where {{ bobDb }}_ae.sales_order_item.ordered_at between "{{from}}" and "{{to}}"
+where {{ namdexDb }}.sales_order_item.ordered_at between "{{from}}" and "{{to}}"
+
 and status_waterfall = 1
 and {{ namdexDb }}.sales_order_item.product_brand = "{{spaced_name}}"
 and status_name not in ('canceled','test_invalid')
