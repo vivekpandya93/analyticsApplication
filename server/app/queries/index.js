@@ -9,6 +9,7 @@ module.exports = {
     options.env = config.get('env');
     options.bobDb = config.get('mysql.dbs.bob');
     options.namdexDb = config.get('mysql.dbs.namdex');
+    options.cerberus = config.get('mysql.dbs.cerberus')
     return tpl(path.join(customDirname || __dirname, fileName), options);
   },
 

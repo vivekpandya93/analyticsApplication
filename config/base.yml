@@ -7,6 +7,7 @@ mysql:
   dbs:
     bob: bob_{{ env }}
     namdex: zeus_{{ env }}
+    cerberus: cerberus_{{env}}
 apps:
   karl:
     user: tech_user

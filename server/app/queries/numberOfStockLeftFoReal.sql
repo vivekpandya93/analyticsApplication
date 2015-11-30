@@ -1,13 +1,9 @@
 select
    size as Size,{{ bobDb }}_ae.catalog_simple.sku as Individual_SKUs,
-     {{ bobDb }}_ae.catalog_stock.quantity as Available_Stock
-   from {{ namdexDb }}.sales_order_item
-     right join {{ bobDb }}_ae.catalog_simple
-     on {{ namdexDb }}.sales_order_item.sku = {{ bobDb }}_ae.catalog_simple.sku
-     right join {{ bobDb }}_ae.catalog_source
-     on {{ bobDb }}_ae.catalog_source.fk_catalog_simple = {{ bobDb }}_ae.catalog_simple.id_catalog_simple
-     right join {{ bobDb }}_ae.catalog_stock
-     on {{ bobDb }}_ae.catalog_stock.fk_catalog_source = {{ bobDb }}_ae.catalog_source.id_catalog_source
+     {{ cerberus }}.stock_summary.quantity as Available_Stock
+      from {{ namdexDb }}.sales_order_item
+     inner join {{ cerberus }}.stock_summary
+      on {{cerberus}}.stock_summary.simple_sku = {{namdexDb}}.sales_order_item.sku
      where {{ namdexDb }}.sales_order_item.product_brand = "{{name}}"
      and {{ namdexDb }}.sales_order_item.status_waterfall = 1
    and status_name <> 'canceled'

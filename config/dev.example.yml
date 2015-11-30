@@ -7,3 +7,5 @@ mysql:
   dbs:
     bob: namshi_{{ env }}
     namdex: namdex_{{ env }}
+    cerberus: cerberus_{{env}}
+
