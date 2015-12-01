@@ -10,7 +10,7 @@ router.post('/', function (req, res) {
 	var email = {recipient: to, message: message, subject: 'You have a new message from ' + from };
 
 	request.post(config.get('apis.karl.emailAllert)'))
-		.auth('tech_user', 'tech1234')
+		.auth(config.get('tech_user'), config.get('tech1234'))
 		.set('Content-Type','application/json')
 		.accept('application/json')
 		.send(email)

@@ -1,5 +1,5 @@
 select
-   size as Size,{{ bobDb }}_ae.catalog_simple.sku as Individual_SKUs,
+   size as Size, {{namdexDb}}.sales_order_item.sku as Individual_SKUs,
      {{ cerberus }}.stock_summary.quantity as Available_Stock
       from {{ namdexDb }}.sales_order_item
    inner join {{ cerberus }}.stock_summary
