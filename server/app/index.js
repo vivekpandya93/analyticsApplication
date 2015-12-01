@@ -1,4 +1,5 @@
 'use strict';
+
 var path = require('path');
 var JWS = require('jws');
 var express = require('express');
