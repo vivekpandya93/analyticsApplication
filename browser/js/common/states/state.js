@@ -26,7 +26,7 @@ app.config(function($stateProvider) {
     	})
         .state('stock_left', {
             url: '/results/:name/:sku',
-            templateUrl: '/js/SKUInfo/sku.html',
+            templateUrl: '/js/SKUinfo/sku.html',
             controller: 'skuController',
             resolve: {
                 one_sku: function(homeFactory, $stateParams, $location, $rootScope) {
