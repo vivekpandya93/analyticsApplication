@@ -1,4 +1,6 @@
 domain: namshi.net
+routes:
+  healthCheck: '/hc/qc'
 mysql:
   server:
     host: locahost
@@ -11,7 +13,7 @@ mysql:
 apps:
   karl:
     user: tech_user
-    passwword: tech1234
+    password: tech1234
 apis:
   protocol: 'https'
   domain: 'namshi.com'
@@ -19,4 +21,4 @@ apis:
   hostName: 'api.{{ apis.domain }}'
   baseUrl: '{{ apis.protocol }}://{{ apis.hostName }}:{{ apis.port }}'
   karl:
-    emailAllert: '{{ apis.baseUrl }}/karl/email/ops_alerts'
+    emailAlert: '{{ apis.baseUrl }}/karl/email/ops_alerts'
