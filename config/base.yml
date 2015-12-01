@@ -19,4 +19,4 @@ apis:
   hostName: 'api.{{ apis.domain }}'
   baseUrl: '{{ apis.protocol }}://{{ apis.hostName }}:{{ apis.port }}'
   karl:
-    emailAllert: '{{ apis.baseUrl }}/karl/email/ops_alerts'
+    emailAlert: '{{ apis.baseUrl }}/karl/email/ops_alerts'
