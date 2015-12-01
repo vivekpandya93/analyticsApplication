@@ -26,13 +26,13 @@ app.config(function($stateProvider) {
     	})
         .state('stock_left', {
             url: '/results/:name/:sku',
-            templateUrl: 'js/SKUInfo/sku.html',
+            templateUrl: '/js/SKUInfo/sku.html',
             controller: 'skuController',
             resolve: {
                 one_sku: function(homeFactory, $stateParams, $location, $rootScope) {
                     console.log("stateParams:", $stateParams)
                     var name = $location.search().name
-                    console.log("name:", name)
+                    console.log("name:", $location.search().name)
                     return homeFactory.getOneSku(name, $stateParams.sku)
                 }
             }
