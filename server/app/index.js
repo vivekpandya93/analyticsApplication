@@ -5,6 +5,7 @@ var express = require('express');
 var httpLogger = require('morgan');
 var app = express();
 var config = require('../config');
+var _ = require('lodash');
 
 app.use(httpLogger('combined', { skip: function(req) {
   return _.contains(req.url, config.get('routes.healthCheck'));
