@@ -1,4 +1,6 @@
 domain: namshi.net
+routes:
+  healthCheck: '/hc/qc'
 mysql:
   server:
     host: locahost

@@ -23,7 +23,6 @@ router.get('/', function(req, res) {
 		delete formData.category;
 	}
 
-	console.log('formData', formData);
 	var queryString = queries.getRightQueryString(formData, 'revenue.sql');
 	db.query(queryString, function(err, rows) {
 	  if (err) {
@@ -54,7 +53,6 @@ router.get('/:name', function(req, res){
 	formData.spaced_name = req.params.name.split('_').join(' ');
 	var queryString = queries.getRightQueryString(formData, 'IndividualBrandInfo.sql');
 		db.query(queryString, function(err, rows) {
-				console.log('IndividualBrandInfo', rows);
 		  if (err) {
 		  	throw err;
 		  }

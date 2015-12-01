@@ -2,37 +2,26 @@
 var path = require('path');
 var JWS = require('jws');
 var express = require('express');
+var httpLogger = require('morgan');
 var app = express();
-// Pass our express application pipeline into the configuration
-// function located at server/app/configure/index.js
+var config = require('../config');
+
+app.use(httpLogger('combined', { skip: function(req) {
+  return _.contains(req.url, config.get('routes.healthCheck'));
+}}));
 
 app.use('/rev.txt', express.static('./public/rev.txt'));
+
+app.get(config.get('routes.healthCheck'), function(req, res) {
+  res.end('OK');
+});
+
 require('./configure')(app);
 
 function getUserByFrontier(req, res, next) {
   var jws = req.cookies['_nmid_secure'] || null;
   var token = (jws) ? JWS.decode(jws) : null;
   req.user = (token) ? token.payload : { email: null, roles: []};
-  // req.user = {
-  //   email: "luciano.colosio@namshi.com",
-  //     roles: [
-  //      "user",
-  //      "admin"
-  //     ],
-  //     stuff: "",
-  //     other_data: {
-  //      123: true
-  //     },
-  //     secure: "",
-  //     new_stuff: "fafasdfasfd",
-  //     hash: "",
-  //     notes: "",
-  //     bob: "admin",
-  //     expiry: "",
-  //     deploy: "zeus, qc",
-  //     exp: 1447369713,
-  //     iat: 1447326513
-  //   };
 
   next();
 }
