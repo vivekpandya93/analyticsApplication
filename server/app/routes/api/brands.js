@@ -62,15 +62,14 @@ router.get('/:name', function(req, res){
 });
 
 router.get('/:name/:sku', function(req, res){
-	res.json({name: req.params.name, sku: req.params.sku});
+	var query = queries.getRightQueryString(req.params,'number.sql');
+	db.query(query, function(err, rows) {
+	  if (err) {
+	  	throw err;
+	  }
 
-	// var query = queries.getRightQueryString(req.params,'numberOfStockLeftFoReal.sql');
-	// db.query(query, function(err, rows) {
-	//   if (err) {
-	//   	throw err;
-	//   }
- // 	  // res.json({result: rows});
- // 	});
+ 	  res.json({result: rows});
+ 	});
 });
 
 module.exports = router;
