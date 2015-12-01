@@ -62,7 +62,7 @@ router.get('/:name', function(req, res){
 });
 
 router.get('/:name/:sku', function(req, res){
-	var query = getQuery('numberOfStockLeftFoReal', req.params);
+	var query = getQuery(req.params,'numberOfStockLeftFoReal.sql');
 	db.query(query, function(err, rows) {
 	  if (err) {
 	  	throw err;

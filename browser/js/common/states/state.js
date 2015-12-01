@@ -32,6 +32,7 @@ app.config(function($stateProvider) {
                 one_sku: function(homeFactory, $stateParams, $location, $rootScope) {
                     console.log("stateParams:", $stateParams)
                     var name = $location.search().name
+                    console.log("name:", name)
                     return homeFactory.getOneSku(name, $stateParams.sku)
                 }
             }
