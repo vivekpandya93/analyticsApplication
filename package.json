@@ -21,6 +21,7 @@
     "mongoose": "^4.2.5",
     "morgan": "1.6.1",
     "mysql": "2.9.0",
+    "newrelic": "^1.24.0",
     "node-nmconfig": "^0.1.1",
     "swig": "^1.4.2",
     "swigql": "0.0.4",
