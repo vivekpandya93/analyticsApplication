@@ -1,10 +1,11 @@
 select
-sum(paid_price) as Revenue, product_brand, count(*) as UnitsSold,
 {{ bobDb }}_ae.catalog_attribute_option_global_department.name as Department,
 {{ bobDb }}_ae.catalog_attribute_option_global_category.name as Category,
 (case when {{ namdexDb }}.sales_order_item.product_age_group <> "Adult" && {{ namdexDb }}.sales_order_item.product_gender ="Male" then "Boy"
 			 when {{ namdexDb }}.sales_order_item.product_age_group <> "Adult" && {{ namdexDb }}.sales_order_item.product_gender ="Female" then "Girl"
-			 else {{ namdexDb }}.sales_order_item.product_gender end) as Gender
+			 else {{ namdexDb }}.sales_order_item.product_gender end) as Gender,
+sum(paid_price) as Revenue, product_brand, count(*) as UnitsSold,
+
 from {{ namdexDb }}.sales_order_item
 
 inner join {{ bobDb }}_ae.catalog_config
@@ -22,10 +23,8 @@ inner join {{ bobDb }}_ae.catalog_attribute_option_global_gender_new
 on {{ bobDb }}_ae.catalog_attribute_option_global_gender_new.id_catalog_attribute_option_global_gender_new
 = {{ bobDb }}_ae.catalog_config.fk_catalog_attribute_option_global_gender_new
 
-where ({{ namdexDb }}.sales_order_item.id_sales_order_item, {{ namdexDb }}.sales_order_item.db) IN 
-			(SELECT {{ namdexDb }}.sales_order_item.id_sales_order_item, {{ namdexDb }}.sales_order_item.db 
-				FROM {{ namdexDb }}.sales_order_item 
-				WHERE {{ namdexDb }}.sales_order_item.ordered_at between "{{from}}" and "{{to}}")
+
+				WHERE {{ namdexDb }}.sales_order_item.ordered_at between "{{from}}" and "{{to}}"
 
 {% if gender %}
 and (case when {{ namdexDb }}.sales_order_item.product_age_group <> "Adult" && {{ namdexDb }}.sales_order_item.product_gender = "Male" then "Boy"
