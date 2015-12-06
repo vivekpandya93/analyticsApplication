@@ -4,7 +4,7 @@ select
 (case when {{ namdexDb }}.sales_order_item.product_age_group <> "Adult" && {{ namdexDb }}.sales_order_item.product_gender ="Male" then "Boy"
 			 when {{ namdexDb }}.sales_order_item.product_age_group <> "Adult" && {{ namdexDb }}.sales_order_item.product_gender ="Female" then "Girl"
 			 else {{ namdexDb }}.sales_order_item.product_gender end) as Gender,
-sum(paid_price) as Revenue, product_brand, count(*) as UnitsSold,
+sum(paid_price) as Revenue, product_brand, count(*) as UnitsSold
 
 from {{ namdexDb }}.sales_order_item
 
@@ -23,8 +23,7 @@ inner join {{ bobDb }}_ae.catalog_attribute_option_global_gender_new
 on {{ bobDb }}_ae.catalog_attribute_option_global_gender_new.id_catalog_attribute_option_global_gender_new
 = {{ bobDb }}_ae.catalog_config.fk_catalog_attribute_option_global_gender_new
 
-
-				WHERE {{ namdexDb }}.sales_order_item.ordered_at between "{{from}}" and "{{to}}"
+WHERE {{ namdexDb }}.sales_order_item.ordered_at between "{{from}}" and "{{to}}"
 
 {% if gender %}
 and (case when {{ namdexDb }}.sales_order_item.product_age_group <> "Adult" && {{ namdexDb }}.sales_order_item.product_gender = "Male" then "Boy"

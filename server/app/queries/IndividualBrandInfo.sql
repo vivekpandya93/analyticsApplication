@@ -21,8 +21,7 @@ on {{ bobDb }}_ae.catalog_attribute_option_global_category.id_catalog_attribute_
 inner join {{ cerberus }}.stock_summary
 on {{ cerberus }}.stock_summary.simple_sku = {{namdexDb}}.sales_order_item.sku
 
-
-				WHERE {{ namdexDb }}.sales_order_item.ordered_at between "{{from}}" and "{{to}}"
+WHERE {{ namdexDb }}.sales_order_item.ordered_at between "{{from}}" and "{{to}}"
 
 
 and status_waterfall = 1
