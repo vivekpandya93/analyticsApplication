@@ -1,5 +1,5 @@
+require('newrelic');
 var server = require('http').createServer();
-
 var createApplication = function () {
     var app = require('.');
     server.on('request', app); // Attach the Express application.
@@ -14,6 +14,5 @@ var startServer = function () {
     });
 
 };
-
 createApplication();
 startServer();
