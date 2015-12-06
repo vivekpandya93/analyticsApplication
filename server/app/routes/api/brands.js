@@ -50,7 +50,7 @@ router.get('/:name', function(req, res){
 		delete formData.category;
 	}
 
-	formData.spaced_name = req.params.name.split('_').join(' ');
+	formData.spaced_name = req.params.name
 	var queryString = queries.getRightQueryString(formData, 'IndividualBrandInfo.sql');
 		db.query(queryString, function(err, rows) {
 		  if (err) {
