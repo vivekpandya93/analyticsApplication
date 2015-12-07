@@ -1,7 +1,7 @@
 select  {{ namdexDb }}.sales_order_item.product_name as Name,
 				{{ namdexDb }}.sales_order_item.sku_config as SKU,
 				sum({{ namdexDb }}.sales_order_item.paid_price) as Revenue,
-  			sum({{ cerberus }}.stock_summary.quantity) as Available_Stock,
+  			{{ cerberus }}.stock_summary.quantity as Available_Stock,
   			count(*) as UnitsSold
 from {{ namdexDb }}.sales_order_item
 
