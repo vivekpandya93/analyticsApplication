@@ -1,4 +1,4 @@
-app.controller('formController', function($state, $scope, homeFactory, dataService, $rootScope, loader){
+app.controller('formController', function($state, $scope, homeFactory, dataService, $rootScope, loader, $filter){
 		$scope.goTo = function(){
 			// angular.extend($rootScope.parameters, $scope.formSelected);
 			console.log(localStorage.getItem('gender'))
