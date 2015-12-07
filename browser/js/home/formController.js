@@ -6,6 +6,30 @@ app.controller('formController', function($state, $scope, homeFactory, dataServi
 
 			$state.go('results', $scope.formSelected);
 			}	
+
+
+			$scope.currentDate = function () {
+				var currentDate = new Date()
+				 $scope.formSelected.from  = $filter('date')(currentDate, "yyyy-MM-dd"); 
+				 $scope.formSelected.to = $filter('date')(currentDate.setDate(currentDate.getDate() - 1), "yyyy-MM-dd")
+			}
+
+			$scope.lastWeek = function () {
+				var currentDate = new Date()
+				 $scope.formSelected.from  = $filter('date')(currentDate, "yyyy-MM-dd"); 
+				 $scope.formSelected.to = $filter('date')(currentDate.setDate(currentDate.getDate() - 7), "yyyy-MM-dd")
+			}
+
+			$scope.lastMonth = function () {
+				var currentDate = new Date()
+				 $scope.formSelected.from  = $filter('date')(currentDate, "yyyy-MM-dd"); 
+				 $scope.formSelected.to = $filter('date')(currentDate.setDate(currentDate.getDate() - 30), "yyyy-MM-dd")
+			}
+			
+	  homeFactory.getBuyerInfo().then(function(name){
+	  		$scope.name = name;
+	  })
+
 		$scope.accessories = [
 			"Belts",
 		  "Dress Shop",	

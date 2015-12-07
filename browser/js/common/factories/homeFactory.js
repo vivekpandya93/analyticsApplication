@@ -19,7 +19,7 @@ app.factory('homeFactory', function($http){
 		},
 		getBuyerInfo: function(){
 			return $http.get('/api').then(function(serverResponse){
-				console.log('name: ', serverResponse.data.email.split('.')[0]);
+				// console.log('name: ', serverResponse.data.email.split('.')[0]);
 				return serverResponse.data.email.split('.')[0];
 			})
 		},

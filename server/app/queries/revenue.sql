@@ -46,7 +46,6 @@ and (case when {{ namdexDb }}.sales_order_item.product_age_group <> "Adult" && {
 {% endif %}
 and {{ namdexDb }}.sales_order_item.status_waterfall = 1
 and {{ namdexDb }}.sales_order_item.status_name <> 'canceled'
-group by product_brand, {{ bobDb }}_ae.catalog_attribute_option_global_department.name,
-{{ bobDb }}_ae.catalog_attribute_option_global_category.name, Gender
+group by product_brand
 order by Revenue desc
 
