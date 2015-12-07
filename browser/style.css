@@ -12,6 +12,10 @@
 	overflow: hidden;
 }
 
+.datepicker { 
+  pading: 10px 20px;
+}
+
 body{
 	padding-top: 80px;
 }
