@@ -10,8 +10,8 @@ app.controller('formController', function($state, $scope, homeFactory, dataServi
 
 			$scope.currentDate = function () {
 				var currentDate = new Date()
-				 $scope.formSelected.to  = $filter('date')(currentDate, "yyyy-MM-dd"); 
-				 $scope.formSelected.from = $filter('date')(currentDate.setDate(currentDate.getDate() - 1), "yyyy-MM-dd")
+				 $scope.formSelected.from  = $filter('date')(currentDate, "yyyy-MM-dd"); 
+				 $scope.formSelected.to = $filter('date')(currentDate.setDate(currentDate.getDate() + 1), "yyyy-MM-dd")
 			}
 
 			$scope.lastWeek = function () {
