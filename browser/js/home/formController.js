@@ -16,14 +16,14 @@ app.controller('formController', function($state, $scope, homeFactory, dataServi
 
 			$scope.lastWeek = function () {
 				var currentDate = new Date()
-				 $scope.formSelected.to  = $filter('date')(currentDate, "yyyy-MM-dd"); 
-				 $scope.formSelected.from = $filter('date')(currentDate.setDate(currentDate.getDate() - 7), "yyyy-MM-dd")
+				 $scope.formSelected.to  = $filter('date')(currentDate.setDate(currentDate.getDate() + 1), "yyyy-MM-dd")
+				 $scope.formSelected.from = $filter('date')(currentDate.setDate(currentDate.getDate() - 6), "yyyy-MM-dd")
 			}
 
 			$scope.lastMonth = function () {
 				var currentDate = new Date()
-				 $scope.formSelected.to  = $filter('date')(currentDate, "yyyy-MM-dd"); 
-				 $scope.formSelected.from = $filter('date')(currentDate.setDate(currentDate.getDate() - 30), "yyyy-MM-dd")
+				 $scope.formSelected.to  = $filter('date')(currentDate.setDate(currentDate.getDate() + 1), "yyyy-MM-dd")
+				 $scope.formSelected.from = $filter('date')(currentDate.setDate(currentDate.getDate() - 29), "yyyy-MM-dd")
 			}
 
 	  homeFactory.getBuyerInfo().then(function(name){
