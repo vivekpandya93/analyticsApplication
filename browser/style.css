@@ -13,8 +13,25 @@
 }
 
 .datepicker { 
-  pading: 10px 20px;
+  padding: 10px 20px;
 }
+
+
+.lblBtn {
+  padding: 8px;
+  margin: 2px 0px 2px 2px;
+  display: inline-block;
+  font-size: 11px;
+  border-radius: 50px;
+} 
+.badge{
+  border-radius: 4px;
+  padding: 9px;
+  width: 120px;
+  margin: 2px;
+  font-size: 11px
+}
+
 
 body{
 	padding-top: 80px;

@@ -12,9 +12,8 @@ app.factory('homeFactory', function($http){
 			console.log('inside getOneBrand: ', path + name);
 			return $http.get(path + name, {params:stateParams}).then(extractData);
 		},
-		getOneSku: function(name, sku) {
-			var regexed = path + name.split(' ').join('_') + '/' + sku;
-			console.log(regexed);
+		getOneSku: function(sku) {
+			var regexed = path + sku;
 			return $http.get(regexed).then(extractData);
 		},
 		getBuyerInfo: function(){

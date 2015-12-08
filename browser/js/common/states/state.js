@@ -17,23 +17,17 @@ app.config(function($stateProvider) {
             resolve:  {
                 one_brand: function(homeFactory, $stateParams, $location, $rootScope) {
                     var formInfo = $location.search();
-                    console.log("STATEPARAMS: ", $stateParams)
-                     console.log("formInfo: ", formInfo)
-
                     return homeFactory.getOneBrand($stateParams.name, $stateParams)
                 }
             }
     	})
         .state('stock_left', {
-            url: '/results/:name/:sku',
+            url: '/results/:sku',
             templateUrl: '/js/SKUinfo/sku.html',
             controller: 'skuController',
             resolve: {
                 one_sku: function(homeFactory, $stateParams, $location, $rootScope) {
-                    console.log("stateParams:", $stateParams)
-                    var name = $location.search().name
-                    console.log("name:", $location.search().name)
-                    return homeFactory.getOneSku(name, $stateParams.sku)
+                    return homeFactory.getOneSku($stateParams.sku)
                 }
             }
         })

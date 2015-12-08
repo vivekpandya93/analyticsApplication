@@ -7,19 +7,19 @@
 						<div class="card">
 						  <img class="card-img-top base64" id="img" ng-src="http://imr.namshi.com/product/{{Stock.SKU}}?angle=1&view=catalog" alt="Card image cap">
 						  <div class="card-block">
-						    <h4 class="card-title">{{Stock.Name}}</h4>
+						    <h4 class="card-title" style="cursor: pointer"><a ui-sref="stock_left({sku:Stock.SKU, name:Stock.Name})">{{Stock.Name}}</a></h4>
 						  </div>
 						   <ul class="list-group-flush">
-						    <li class="">Revenue: {{Stock.Revenue | number: 0 }}</li>
-						    <li class="">Units Sold: {{Stock.UnitsSold}}</li>
-						    <li class="">Available Stock: {{Stock.Available_Stock}}</li>
-						    <li class=""><a ui-sref="stock_left({sku:Stock.SKU, name:Stock.Name})">{{Stock.SKU}}</a></li>
+						    <span class="badge label-default">Revenue: {{Stock.Revenue | number: 0 }}</span>
+								<span class="badge label-warning">Units Sold: {{Stock.UnitsSold}}</span>
+								<span class="badge label-default">{{Stock.SKU}}</span>								
 						  </ul>
 						</div>
 					</div>
 		   	</ul> 
 		</div>
 </div>
+
 
 
 
