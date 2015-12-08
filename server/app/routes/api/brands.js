@@ -32,6 +32,8 @@ formData = req.query;
 	}
 
 	var statement = sqlTmpRevenue.render(formData)
+	console.log("query:", statement.query)
+	console.log("params:", statement.params)
 
 	// var queryString = queries.getRightQueryString([formData.from,formData.to, formData.gender, formData.department, formData.category], 'revenue.sql');
 	db.query(statement.query, statement.params, function(err, rows) {
