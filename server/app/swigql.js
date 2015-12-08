@@ -5,7 +5,6 @@ var tags = {
   /* Add a "bind" tag to swig */
   bind: function (indent, parser) {
     var myArg = parser.parseVariable(this.args[0]);
-
     return helpers.setVar('__myArg', myArg)
            + 'o = _ext.swigql;'
            + 'o.bind.push(__myArg);'

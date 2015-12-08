@@ -24,12 +24,13 @@
   font-size: 11px;
   border-radius: 50px;
 } 
+
 .badge{
   border-radius: 4px;
   padding: 9px;
   width: 120px;
   margin: 2px;
-  font-size: 11px
+  font-size: 11px;
 }
 
 
