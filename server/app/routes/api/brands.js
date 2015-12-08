@@ -5,12 +5,8 @@ var queries = require('../../queries');
 var path = require('path');
 var swigql = require('../../swigql')
 
-var getQuery = function(name) {
-	return fs.readFileSync(path.join(__dirname, '../..', 'queries', `${name}.sql`)).toString('utf8');
-};
-
 var queryPath = function(name) {
-		return  '../../../app/queries/'+name+'.sql'
+		return  __dirname+'../../queries/'+name+'.sql'
 }
 
 var formData = {}
