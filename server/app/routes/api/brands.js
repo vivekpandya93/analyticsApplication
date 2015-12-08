@@ -6,7 +6,7 @@ var path = require('path');
 var swigql = require('../../swigql')
 
 var queryPath = function(name) {
-		return  __dirname+'../../queries/'+name+'.sql'
+		return  'src/server/app/queries/'+name+'.sql'
 }
 
 var formData = {}
