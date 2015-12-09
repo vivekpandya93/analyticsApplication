@@ -7,12 +7,14 @@
 						<div class="card">
 						  <img class="card-img-top base64" id="img" ng-src="http://imr.namshi.com/product/{{Stock.SKU}}?angle=1&view=catalog" alt="Card image cap">
 						  <div class="card-block">
-						    <h4 class="card-title" style="cursor: pointer"><a ui-sref="stock_left({sku:Stock.SKU, name:Stock.Name})">{{Stock.Name}}</a></h4>
+						    <h5 class="card-title" style="cursor: pointer"><a ui-sref="stock_left({sku:Stock.SKU, name:Stock.Name})">{{Stock.Name}}</a></h5>
 						  </div>
 						   <ul class="list-group-flush">
-						    <span class="badge label-default">Revenue: {{Stock.Revenue | number: 0 }}</span>
-								<span class="badge label-warning">Units Sold: {{Stock.UnitsSold}}</span>
-								<span class="badge label-default">{{Stock.SKU}}</span>								
+						    <span class="label-info badge1">Revenue: {{Stock.Revenue | number: 0 }}</span>
+								<span class="label-info badge2">Units Sold: {{Stock.UnitsSold}}</span>
+								<span class="label-default badge2">{{Stock.SKU}}</span>		
+								<span class="badge1  label-default ">Original Price: {{Stock.original}}</span>
+								<span ng-if = "Stock.special" class="badge1  label-default">Special:{{Stock.special}}</span>						
 						  </ul>
 						</div>
 					</div>

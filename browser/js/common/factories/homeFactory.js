@@ -13,7 +13,8 @@ app.factory('homeFactory', function($http){
 			return $http.get(path + name, {params:stateParams}).then(extractData);
 		},
 		getOneSku: function(sku) {
-			var regexed = path + sku;
+			var regexed = path + 'sku' + '/' + sku;
+			console.log("making calls", path + 'sku' + '/' + sku)
 			return $http.get(regexed).then(extractData);
 		},
 		getBuyerInfo: function(){

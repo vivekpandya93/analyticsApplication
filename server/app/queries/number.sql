@@ -7,5 +7,5 @@ from {{ locales.namdexDb }}.sales_order_item
 		 on {{ locales.cerberus }}.stock_summary.simple_sku = {{ locales.namdexDb }}.sales_order_item.sku
      where {{ locales.namdexDb }}.sales_order_item.status_waterfall = 1
      and {{ locales.namdexDb }}.sales_order_item.status_name <> 'canceled'
-     and {{ locales.namdexDb }}.sales_order_item.sku_config = {% bind variables.sku %}
+     and {{ locales.namdexDb }}.sales_order_item.sku_config = {% bind variables %}
      group by Individual_SKUs

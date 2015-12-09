@@ -1,11 +1,17 @@
 select  {{ locales.namdexDb }}.sales_order_item.product_name as Name,
 				{{ locales.namdexDb }}.sales_order_item.sku_config as SKU,
+				{{ locales.bobDb }}_ae.catalog_simple.price as original,
+				{{ locales.bobDb }}_ae.catalog_simple.special_price as special,
 				sum({{ locales.namdexDb }}.sales_order_item.paid_price) as Revenue,
   			count(*) as UnitsSold
 from {{ locales.namdexDb }}.sales_order_item
 
 left join {{ locales.bobDb }}_ae.catalog_config
 on {{ locales.namdexDb }}.sales_order_item.sku_config = {{ locales.bobDb }}_ae.catalog_config.sku
+
+left join {{ locales.bobDb }}_ae.catalog_simple
+on {{ locales.bobDb }}_ae.catalog_simple.fk_catalog_config= {{ locales.bobDb }}_ae.catalog_config.id_catalog_config
+
 
 left join {{ locales.bobDb }}_ae.catalog_attribute_option_global_department
 on {{ locales.bobDb }}_ae.catalog_attribute_option_global_department.id_catalog_attribute_option_global_department = {{ locales.bobDb }}_ae.catalog_config.fk_catalog_attribute_option_global_department

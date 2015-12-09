@@ -74,9 +74,11 @@ formData.variables = req.query;
 		});
 });
 
-router.get('/:sku', function(req, res){
-	formData.variables.sku = req.params.sku 
+router.get('/sku/:sku', function(req, res){
+	console.log("sku", req.params.sku)
+	formData.variables = req.params.sku
 	var statement = sqlTmpNumber.render(formData)
+	console.log("formData", formData)
 	console.log("query:", statement.query)
 	console.log("params:", statement.params)
 	db.query(statement.query, statement.params, function(err, rows) {

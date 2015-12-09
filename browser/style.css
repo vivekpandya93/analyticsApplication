@@ -25,14 +25,26 @@
   border-radius: 50px;
 } 
 
-.badge{
+.badge1{
   border-radius: 4px;
   padding: 9px;
-  width: 120px;
-  margin: 2px;
+  width: 110px;
   font-size: 11px;
+  background: #77A6CE;
+  margin-top: 10px;
+    display: inline-block;
+
 }
 
+.badge2{
+  border-radius: 4px;
+  padding: 8px;
+  width: 100px;
+  margin-top: 10px;
+  font-size: 11px;
+  background: #DAA520;
+  display: inline-block;
+}
 
 body{
 	padding-top: 80px;
