@@ -25,19 +25,19 @@ on {{ locales.bobDb }}_ae.catalog_attribute_option_global_gender_new.id_catalog_
 
 WHERE {{ locales.namdexDb }}.sales_order_item.ordered_at between {% bind variables.from %} and {% bind variables.to %}
 
-{% if gender %}
+{% if variables.gender %}
 and (case when {{ locales.namdexDb }}.sales_order_item.product_age_group <> "Adult" && {{ locales.namdexDb }}.sales_order_item.product_gender = "Male" then "Boy"
 		  when {{ locales.namdexDb }}.sales_order_item.product_age_group <> "Adult" && {{ locales.namdexDb }}.sales_order_item.product_gender ="Female" then "Girl"
      else {{ locales.namdexDb }}.sales_order_item.product_gender end) = {% bind variables.gender %}
 {% endif %}
 
-{% if department %}
+{% if variables.department %}
 	and {{ locales.bobDb }}_ae.catalog_attribute_option_global_department.name = {% bind variables.department %}
 {% else %}
 	and {{ locales.bobDb }}_ae.catalog_attribute_option_global_department.name in ('Accessories', 'Bags', 'Clothing', 'Shoes')
 {%endif%}
 
-{% if category %}
+{% if variables.category %}
 	and {{ locales.bobDb }}_ae.catalog_attribute_option_global_category.name = {% bind variables.category %}
 {% endif %}
 and {{ locales.namdexDb }}.sales_order_item.status_waterfall = 1
