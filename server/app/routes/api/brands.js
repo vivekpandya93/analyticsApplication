@@ -36,8 +36,6 @@ formData.variables = req.query;
 	var statement = sqlTmpRevenue.render(formData)
 	console.log("query:", statement.query)
 	console.log("params:", statement.params)
-
-	// var queryString = queries.getRightQueryString([formData.variables.from,formData.variables.to, formData.variables.gender, formData.variables.department, formData.variables.category], 'revenue.sql');
 	db.query(statement.query, statement.params, function(err, rows) {
 	  if (err) {
 	  	throw err;
@@ -65,7 +63,8 @@ formData.variables = req.query;
 
 	formData.variables.spaced_name = req.params.name
 	var statement = sqlTmpBrandInfo.render(formData)
-	// var queryString = queries.getRightQueryString([formData.variables.from, formData.variables.to, formData.variables.spaced_name, formData.variables.department, formData.variables.gender, formData.variables.category], 'IndividualBrandInfo.sql');
+	console.log("query:", statement.query)
+	console.log("params:", statement.params)
 		db.query(statement.query, statement.params, function(err, rows) {
 		  if (err) {
 		  	throw err;
@@ -78,7 +77,8 @@ formData.variables = req.query;
 router.get('/:sku', function(req, res){
 	formData.variables = req.params.name 
 	var statement = sqlTmpNumber.render(formData)
-	// var query = queries.getRightQueryString(req.params,'number.sql');
+	console.log("query:", statement.query)
+	console.log("params:", statement.params)
 	db.query(statement.query, statement.params, function(err, rows) {
 	  if (err) {
 	  	throw err;
