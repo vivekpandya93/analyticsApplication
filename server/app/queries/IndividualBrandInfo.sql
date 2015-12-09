@@ -6,12 +6,11 @@ select  {{ locales.namdexDb }}.sales_order_item.product_name as Name,
   			count(*) as UnitsSold
 from {{ locales.namdexDb }}.sales_order_item
 
-left join {{ locales.bobDb }}_ae.catalog_config
-on {{ locales.namdexDb }}.sales_order_item.sku_config = {{ locales.bobDb }}_ae.catalog_config.sku
-
 left join {{ locales.bobDb }}_ae.catalog_simple
-on {{ locales.bobDb }}_ae.catalog_simple.fk_catalog_config= {{ locales.bobDb }}_ae.catalog_config.id_catalog_config
+on {{ locales.namdexDb }}.sales_order_item.sku = {{ locales.bobDb }}_ae.catalog_simple.sku
 
+left join {{ locales.bobDb }}_ae.catalog_config
+on {{ locales.bobDb }}_ae.catalog_simple.fk_catalog_config = {{ locales.bobDb }}_ae.catalog_config.id_catalog_config 
 
 left join {{ locales.bobDb }}_ae.catalog_attribute_option_global_department
 on {{ locales.bobDb }}_ae.catalog_attribute_option_global_department.id_catalog_attribute_option_global_department = {{ locales.bobDb }}_ae.catalog_config.fk_catalog_attribute_option_global_department
@@ -27,7 +26,6 @@ WHERE {{ locales.namdexDb }}.sales_order_item.ordered_at between DATE_ADD({% bin
 
 and status_waterfall = 1
 and {{ locales.namdexDb }}.sales_order_item.product_brand = {% bind variables.spaced_name %}
-and status_name not in ('canceled','test_invalid')
 
 {% if variables.department %}
 	and {{ locales.bobDb }}_ae.catalog_attribute_option_global_department.name = {% bind variables.department %}
@@ -38,10 +36,6 @@ and (case when {{ locales.namdexDb }}.sales_order_item.product_age_group <> "Adu
 		  when {{ locales.namdexDb }}.sales_order_item.product_age_group <> "Adult" && {{ locales.namdexDb }}.sales_order_item.product_gender ="Female" then "Girl"
      else {{ locales.namdexDb }}.sales_order_item.product_gender end) = {% bind variables.gender %}
 
-{% else %}
-		and (case when {{ locales.namdexDb }}.sales_order_item.product_age_group <> "Adult" && {{ locales.namdexDb }}.sales_order_item.product_gender = "Male" then "Boy"
-		 when {{ locales.namdexDb }}.sales_order_item.product_age_group <> "Adult" && {{ locales.namdexDb }}.sales_order_item.product_gender ="Female" then "Girl"
-     else {{ locales.namdexDb }}.sales_order_item.product_gender end) in ('Boy' , 'Girl', 'Male', 'Female')
 {% endif %}
 
 {% if variables.category %}
