@@ -23,13 +23,13 @@ and status_waterfall = 1
 and {{ locales.namdexDB }}.sales_order_item.product_brand = {% bind variables.spaced_name %}
 and status_name not in ('canceled','test_invalid')
 
-{% if department %}
+{% if variables.department %}
 	and {{ locales.bobDb }}_ae.catalog_attribute_option_global_department.name = {% bind variables.department %}
 {% else %}
 	and {{ locales.bobDb }}_ae.catalog_attribute_option_global_department.name in ('Accessories', 'Bags', 'Clothing', 'Shoes')
 {%endif%}
 
-{% if gender %}
+{% if variables.gender %}
 and (case when {{ locales.namdexDB }}.sales_order_item.product_age_group <> "Adult" && {{ locales.namdexDB }}.sales_order_item.product_gender = "Male" then "Boy"
 		  when {{ locales.namdexDB }}.sales_order_item.product_age_group <> "Adult" && {{ locales.namdexDB }}.sales_order_item.product_gender ="Female" then "Girl"
      else {{ locales.namdexDB }}.sales_order_item.product_gender end) = {% bind variables.gender %}
@@ -40,7 +40,7 @@ and (case when {{ locales.namdexDB }}.sales_order_item.product_age_group <> "Adu
      else {{ locales.namdexDB }}.sales_order_item.product_gender end) in ('Boy' , 'Girl', 'Male', 'Female')
 {% endif %}
 
-{% if category %}
+{% if variables.category %}
 	and {{ locales.bobDb }}_ae.catalog_attribute_option_global_category.name = {% bind variables.category %}
 {%endif%}
 

@@ -65,7 +65,7 @@ formData.variables = req.query;
 
 	formData.variables.spaced_name = req.params.name
 	var statement = sqlTmpBrandInfo.render(formData)
-	var queryString = queries.getRightQueryString([formData.variables.from, formData.variables.to, formData.variables.spaced_name, formData.variables.department, formData.variables.gender, formData.variables.category], 'IndividualBrandInfo.sql');
+	// var queryString = queries.getRightQueryString([formData.variables.from, formData.variables.to, formData.variables.spaced_name, formData.variables.department, formData.variables.gender, formData.variables.category], 'IndividualBrandInfo.sql');
 		db.query(statement.query, statement.params, function(err, rows) {
 		  if (err) {
 		  	throw err;
