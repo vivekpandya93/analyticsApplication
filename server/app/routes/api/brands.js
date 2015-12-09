@@ -9,7 +9,9 @@ var queryPath = function(name) {
 		return  'src/server/app/queries/'+name+'.sql'
 }
 
-var formData = {}
+var formData = {
+	locales: queries.getLocales();
+}
 
 
 var sqlTmpRevenue = swigql.compileFile(queryPath('revenue'));
@@ -17,25 +19,25 @@ var sqlTmpBrandInfo = swigql.compileFile(queryPath('IndividualBrandInfo'));
 var sqlTmpNumber = swigql.compileFile(queryPath('number'));
 
 router.get('/', function(req, res) {
-formData = req.query;
+formData.variables = req.query;
 
-	if(formData.department === 'All Departments') {
-		delete formData.department;
-		delete formData.category;
+	if(formData.variables.department === 'All Departments') {
+		delete formData.variables.department;
+		delete formData.variables.category;
 	}
-	if(formData.gender === 'All Genders') {
-		delete formData.gender;
+	if(formData.variables.gender === 'All Genders') {
+		delete formData.variables.gender;
 	}
 
-	if(formData.category === 'All Categories') {
-		delete formData.category;
+	if(formData.variables.category === 'All Categories') {
+		delete formData.variables.category;
 	}
 
 	var statement = sqlTmpRevenue.render(formData)
 	console.log("query:", statement.query)
 	console.log("params:", statement.params)
 
-	// var queryString = queries.getRightQueryString([formData.from,formData.to, formData.gender, formData.department, formData.category], 'revenue.sql');
+	// var queryString = queries.getRightQueryString([formData.variables.from,formData.variables.to, formData.variables.gender, formData.variables.department, formData.variables.category], 'revenue.sql');
 	db.query(statement.query, statement.params, function(err, rows) {
 	  if (err) {
 	  	throw err;
@@ -46,24 +48,24 @@ formData = req.query;
 
 
 router.get('/:name', function(req, res){
-formData = req.query;
+formData.variables = req.query;
 
-	if(formData.department === 'All Departments') {
-		delete formData.department;
-		delete formData.category;
+	if(formData.variables.department === 'All Departments') {
+		delete formData.variables.department;
+		delete formData.variables.category;
 	}
 
-	if(formData.gender === 'All Genders') {
-		delete formData.gender;
+	if(formData.variables.gender === 'All Genders') {
+		delete formData.variables.gender;
 	}
 
-	if(formData.category === 'All Categories') {
-		delete formData.category;
+	if(formData.variables.category === 'All Categories') {
+		delete formData.variables.category;
 	}
 
-	formData.spaced_name = req.params.name
+	formData.variables.spaced_name = req.params.name
 	var statement = sqlTmpBrandInfo.render(formData)
-	// var queryString = queries.getRightQueryString([formData.from, formData.to, formData.spaced_name, formData.department, formData.gender, formData.category], 'IndividualBrandInfo.sql');
+	var queryString = queries.getRightQueryString([formData.variables.from, formData.variables.to, formData.variables.spaced_name, formData.variables.department, formData.variables.gender, formData.variables.category], 'IndividualBrandInfo.sql');
 		db.query(statement.query, statement.params, function(err, rows) {
 		  if (err) {
 		  	throw err;
@@ -74,7 +76,7 @@ formData = req.query;
 });
 
 router.get('/:sku', function(req, res){
-	formData = req.params.name 
+	formData.variables = req.params.name 
 	var statement = sqlTmpNumber.render(formData)
 	// var query = queries.getRightQueryString(req.params,'number.sql');
 	db.query(statement.query, statement.params, function(err, rows) {

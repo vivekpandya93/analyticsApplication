@@ -42,6 +42,7 @@ var config = {
   tags:       tags,
   extensions: extensions
 };
+
 swig.init(config);
 /** wrap swig's init */
 exports.init = function (options) {
