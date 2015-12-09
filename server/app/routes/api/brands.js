@@ -10,7 +10,7 @@ var queryPath = function(name) {
 }
 
 var formData = {
-	locales: queries.getLocales();
+	locales: queries.getLocales()
 }
 
 
