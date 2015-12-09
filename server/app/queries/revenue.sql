@@ -23,7 +23,7 @@ left join {{ locales.bobDb }}_ae.catalog_attribute_option_global_gender_new
 on {{ locales.bobDb }}_ae.catalog_attribute_option_global_gender_new.id_catalog_attribute_option_global_gender_new
 = {{ locales.bobDb }}_ae.catalog_config.fk_catalog_attribute_option_global_gender_new
 
-WHERE {{ locales.namdexDb }}.sales_order_item.ordered_at between {% bind variables.from %} and {% bind variables.to %}
+WHERE {{ locales.namdexDb }}.sales_order_item.ordered_at between DATE_ADD({% bind variables.from %}, INTERVAL -4 HOUR) and DATE_ADD({% bind variables.to %}, INTERVAL - 4 HOUR) 
 
 {% if variables.gender %}
 and (case when {{ locales.namdexDb }}.sales_order_item.product_age_group <> "Adult" && {{ locales.namdexDb }}.sales_order_item.product_gender = "Male" then "Boy"
@@ -33,15 +33,12 @@ and (case when {{ locales.namdexDb }}.sales_order_item.product_age_group <> "Adu
 
 {% if variables.department %}
 	and {{ locales.bobDb }}_ae.catalog_attribute_option_global_department.name = {% bind variables.department %}
-{% else %}
-	and {{ locales.bobDb }}_ae.catalog_attribute_option_global_department.name in ('Accessories', 'Bags', 'Clothing', 'Shoes')
 {%endif%}
 
 {% if variables.category %}
 	and {{ locales.bobDb }}_ae.catalog_attribute_option_global_category.name = {% bind variables.category %}
 {% endif %}
 and {{ locales.namdexDb }}.sales_order_item.status_waterfall = 1
-and {{ locales.namdexDb }}.sales_order_item.status_name <> 'canceled'
 group by product_brand
 order by Revenue desc
 limit 250;
