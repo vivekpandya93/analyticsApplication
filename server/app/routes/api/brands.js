@@ -75,7 +75,7 @@ formData.variables = req.query;
 });
 
 router.get('/:sku', function(req, res){
-	formData.variables = req.params.name 
+	formData.variables.sku = req.params.sku 
 	var statement = sqlTmpNumber.render(formData)
 	console.log("query:", statement.query)
 	console.log("params:", statement.params)
