@@ -4,6 +4,7 @@ var fs = require('fs');
 var queries = require('../../queries');
 var path = require('path');
 var swigql = require('../../swigql')
+var _ = require ('lodash')
 
 var queryPath = function(name) {
 		return  'src/server/app/queries/'+name+'.sql'
@@ -17,6 +18,7 @@ var formData = {
 var sqlTmpRevenue = swigql.compileFile(queryPath('revenue'));
 var sqlTmpBrandInfo = swigql.compileFile(queryPath('IndividualBrandInfo'));
 var sqlTmpNumber = swigql.compileFile(queryPath('number'));
+var sqlIndividualStock = swigql.compileFile(queryPath('total_available_stock'))
 
 router.get('/', function(req, res) {
 formData.variables = req.query;
@@ -63,15 +65,40 @@ formData.variables = req.query;
 
 	formData.variables.spaced_name = req.params.name
 	var statement = sqlTmpBrandInfo.render(formData)
+
+	var finalresult = []
 	console.log("query:", statement.query)
 	console.log("params:", statement.params)
 		db.query(statement.query, statement.params, function(err, rows) {
 		  if (err) {
 		  	throw err;
 		  }
+		  console.log("rows", rows)
+		  formData.variables.skus = [];
+		  rows.forEach(function(row){
+		  	formData.variables.skus.push(row.SKU)
+		  });
+ 
+	  	console.log("formdata.sku", formData.variables.sku)
+	  	var innerStatement = sqlIndividualStock.render(formData)
+		  db.query(innerStatement.query, innerStatement.params, function(err, skusAvailabilities) {
+	  		console.log("in here", innerStatement.query)
+	  		console.log("avalaibilities", skusAvailabilities)
+	 			rows.forEach(function(row){
+	 				skusAvailabilities.forEach(function(sku){
+	 					if (sku.SKU === row.SKU) {
+	 						row.Available_Stock = sku.Available_Stock
+	 						finalresult.push(row)
+	 					}
+	 				})
+	 			}) 
+	 			console.log("final result", finalresult)
+		  	res.json({result: finalresult});
+	  	})
 
-		  res.json({result: rows});
+		
 		});
+	
 });
 
 router.get('/sku/:sku', function(req, res){
@@ -82,11 +109,23 @@ router.get('/sku/:sku', function(req, res){
 	console.log("query:", statement.query)
 	console.log("params:", statement.params)
 	db.query(statement.query, statement.params, function(err, rows) {
-	  if (err) {
+	  	if (err) {
 	  	throw err;
 	  }
- 	  res.json({result: rows});
- 	});
+	 		 res.json({result: rows})
+	 });
 });
+	  // skus = _.map(rows, function(row) {
+	  // 	return row.simple_sku
+	  // });
 
+	  //select simple_sku, quantity from stock_summary where simple_sku in (?) => 'AE123', 'ae344', 'ae455'
+ 	  // db.query(statement.query, [skus], function(err, rows2) {
+ 	  // 	if (err) {
+		  // 	throw err;
+		  // }
+
+
+ 	  	// res.json({result: _.merge(rows, rows2);});	
+ 	
 module.exports = router;

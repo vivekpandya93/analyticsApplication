@@ -47,6 +47,3 @@ group by {{ locales.namdexDb }}.sales_order_item.sku_config, {{ locales.namdexDb
 order by Revenue desc
 limit 250;
 
-
-
-
