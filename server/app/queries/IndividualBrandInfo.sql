@@ -24,7 +24,6 @@ on {{ locales.bobDb }}_ae.catalog_attribute_option_global_category.id_catalog_at
 WHERE {{ locales.namdexDb }}.sales_order_item.ordered_at between DATE_ADD({% bind variables.from %}, INTERVAL -4 HOUR) and DATE_ADD({% bind variables.to %}, INTERVAL - 4 HOUR) 
 
 
-and status_waterfall = 1
 and {{ locales.namdexDb }}.sales_order_item.product_brand = {% bind variables.spaced_name %}
 
 {% if variables.department %}
@@ -45,5 +44,5 @@ and (case when {{ locales.namdexDb }}.sales_order_item.product_age_group <> "Adu
 and {{ locales.namdexDb }}.sales_order_item.status_waterfall = 1
 group by {{ locales.namdexDb }}.sales_order_item.sku_config, {{ locales.namdexDb }}.sales_order_item.product_name
 order by Revenue desc
-limit 250;
+limit 500;
 
