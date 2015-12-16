@@ -44,5 +44,5 @@ and (case when {{ locales.namdexDb }}.sales_order_item.product_age_group <> "Adu
 and {{ locales.namdexDb }}.sales_order_item.status_waterfall = 1
 group by {{ locales.namdexDb }}.sales_order_item.sku_config, {{ locales.namdexDb }}.sales_order_item.product_name
 order by Revenue desc
-limit 500;
+limit 1000;
 

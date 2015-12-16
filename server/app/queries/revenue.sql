@@ -4,7 +4,7 @@ select
 (case when {{ locales.namdexDb }}.sales_order_item.product_age_group <> "Adult" && {{ locales.namdexDb }}.sales_order_item.product_gender ="Male" then "Boy"
 			 when {{ locales.namdexDb }}.sales_order_item.product_age_group <> "Adult" && {{ locales.namdexDb }}.sales_order_item.product_gender ="Female" then "Girl"
 			 else {{ locales.namdexDb }}.sales_order_item.product_gender end) as Gender,
-sum(paid_price) as Revenue, product_brand, count(*) as UnitsSold
+sum(unit_price) as Revenue, product_brand, count(*) as UnitsSold
 
 from {{ locales.namdexDb }}.sales_order_item
 
@@ -42,5 +42,5 @@ and (case when {{ locales.namdexDb }}.sales_order_item.product_age_group <> "Adu
 and {{ locales.namdexDb }}.sales_order_item.status_waterfall = 1
 group by product_brand
 order by Revenue desc
-limit 1000;
+limit 500;
 
