@@ -3,7 +3,7 @@
 		<div class="row">
 				<button type="button" class="btn btn-md btn-primary fixedBtn" ng-click='ExportToExcel()'><i class="glyphicon glyphicon-save"></i>  Export Excel</button>
 		   	<ul>
-		   		<div ng-repeat="Stock in brandInfo | orderBy:'UnitsSold' " class="col-xs-12 col-sm-6 col-md-6 col-lg-3 ">	   		
+		   		<div ng-repeat="Stock in brandInfo | orderBy:'-UnitsSold' " class="col-xs-12 col-sm-6 col-md-6 col-lg-3 ">	   		
 						<div class="card">
 						  <img class="card-img-top base64" id="img" ng-src="http://imr.namshi.com/product/{{Stock.SKU}}?angle=1&view=catalog" alt="Card image cap">
 						  <div class="card-block">
@@ -13,8 +13,8 @@
 <!-- 						    <span class="label-info badge1">Revenue: {{Stock.Revenue | number: 0 }}</span>
  -->						<span class="label-info badge1">Units Sold: {{Stock.UnitsSold}}</span>
 								<span class="label-default badge2">{{Stock.SKU}}</span>		
+								<span class="badge2  label-default ">Stock Available: {{Stock.Available_Stock}}</span>
 								<span class="badge1  label-default ">Original Price: {{Stock.original}}</span>
-								<span class="badge1  label-default ">Stock Available: {{Stock.Available_Stock}}</span>
 								<span ng-if = "Stock.special" class="badge2  label-default">Discounted:{{Stock.special}}</span>						
 						  </ul>
 						</div>
