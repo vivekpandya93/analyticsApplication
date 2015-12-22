@@ -1,6 +1,6 @@
 app.factory('homeFactory', function($http){
 	 var path = '/api/brands/';
-	 
+
 	 function extractData (serverResponse) {
 	  	return serverResponse.data.result;
 	  }
@@ -8,7 +8,7 @@ app.factory('homeFactory', function($http){
 	return {
 		getBrands: function(formData) {
         return $http.get(path, {params:formData}).then(extractData);
-		},
+		},	
 		getOneBrand: function(name, stateParams) {
 			console.log('inside getOneBrand: ', path + name);
 			return $http.get(path + name, {params:stateParams}).then(extractData);
@@ -34,4 +34,3 @@ app.factory('homeFactory', function($http){
 		}
 	}
 })
-`
