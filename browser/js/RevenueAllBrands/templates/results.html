@@ -10,7 +10,7 @@
 			    		<th>Revenue in AED</th> 
 			    		<th>Units Sold</th>
 					</tr>
-			   	<tr ng-repeat="value in values">
+			   	<tr ng-repeat="value in values | orderBy:'-UnitsSold'">
 			   			<td ng-click= "goToBrands($event)"><a style="cursor: pointer">{{value.product_brand}}</a></td>
 			   			<td>{{value.Revenue | number:0}}</td>
 			   			<td>{{value.UnitsSold}}</td>

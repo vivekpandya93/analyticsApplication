@@ -10,7 +10,7 @@
 						    <h5 class="card-title" style="cursor: pointer"><a ui-sref="stock_left({sku:Stock.SKU, name:Stock.Name})">{{Stock.Name}}</a></h5>
 						  </div>
 						   <ul class="list-group-flush">
-   						 <span class="label-info badge1">Units Sold: {{Stock.UnitsSold}}</span>
+   						 <span class="label-info badge1" style:"font-weight: bold">Units Sold: {{Stock.UnitsSold}}</span>
    						 <span class="label-info badge2">Revenue: {{Stock.Revenue | number: 0 }}</span>
 								<span class="label-default badge2">{{Stock.SKU}}</span>		
 								<span class="badge2  label-default ">Stock: {{Stock.Available_Stock}}</span>
