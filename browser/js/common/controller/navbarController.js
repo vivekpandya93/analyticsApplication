@@ -1,4 +1,4 @@
-app.controller('navbarController', function($state, $scope, homeFactory, dataService, $rootScope, $location){
+app.controller('navbarController', function($state, $scope, homeFactory, dataService, $rootScope, $location, $filter){
 	 	$rootScope.parameters = {};
 
 	 	// $scope.formSelected =  {};
@@ -112,7 +112,7 @@ app.controller('navbarController', function($state, $scope, homeFactory, dataSer
 			}
 
 		}
-		
+
 			$scope.currentDate = function () {
 				var currentDate = new Date()
 				 $scope.formSelected.from  = $filter('date')(currentDate, "yyyy-MM-dd"); 

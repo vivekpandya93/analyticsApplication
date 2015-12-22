@@ -1,5 +1,12 @@
 .coolForm .form-group {
-	margin-bottom: 10px;
+	margin: 10px;
+}
+.inline-cool-form{
+  display: inline-block;
+  float: none;
+}
+.inline-cool-form .btn {
+  padding:6px 12px;
 }
 .coolForm .form-group .form-control{
 	display: block;
