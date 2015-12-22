@@ -1,9 +1,9 @@
 window.app = angular.module('NamshiBuyingApp', ['ui.router', 'ui.bootstrap']);
 
 
-app.config(function ($urlRouterProvider, $locationProvider){
+app.config(function ($urlRouterProvider, $locationProvider, $httpProvider){
 	   $urlRouterProvider.otherwise('/');
-
+	   $httpProvider.defaults.header.common['Cache-Control'] = 'max-age=60000';
     $locationProvider.html5Mode(true);
 
 })
