@@ -1,0 +1,129 @@
+<!-- <section class="form-inline">
+	<div class="col-xs-6">
+	 <div class="row">
+ 	  <div class="panel panel-default">
+ 	  	 	<h1> Enter a from </h1>
+				<input type="text" ng-model="formSelected.from",  data-output="formSelected.from", jqdatepicker/>
+ 	  </div>
+ 	</div>
+ 	<div class="row">
+ 	  <div class="panel panel-default">
+ 	  		<h1> Enter a to </h1>
+				<input type="text" ng-model="formSelected.to", data-output="formSelected.to", jqdatepicker/>
+ 	  </div>
+ 	</div>
+ 	 <div class="row">
+ 	   <div class="panel panel-default">
+ 	   		<h1> Enter a category</h1>
+ 	  		<input type="text" ng-model="formSelected.category">
+ 	  </div>
+ 	</div>
+ 	<div class="row">
+ 	  <div class="panel panel-default">
+ 	   		<h1> enter a gender</h1>
+ 	  		<input type="text" ng-model="formSelected.gender">
+ 	  </div>
+ 	</div>
+ 	  <div class="row">
+       <button type="submit" class="btn btn-success btn-md btn-block" ng-click='goTo()'>Submit</button>
+    </div>
+  </div>
+</div>
+</section> -->
+<!-- <div class="navbar">
+ 		<div class="navbar-inner">
+        <div class="container">
+            <ul class="nav">
+                <li><a href="">
+                    <img src="https://b.namshicdn.com/ops/images/namshi-logo.gif" width="170px" style="text-align:center"
+                        height="50;">
+                </a></li>
+                <li class="active"><a href="/results">Sales Summary</a></li>
+            </ul>
+        </div>
+    </div>
+</div> -->
+      <navbar></navbar>
+
+<div class="container">
+  <div class="row">
+	  <div id="div_02" class="alert alert-success col-lg-12 col-md-12 col-sm-12 col-xs-12">
+	      <h3>
+	          Hey {{name}}!</h3>
+	      <p>
+	          If you're looking for shipout queues then you should look at the <a href="https://outbound.namshi.net/visual_backlog" target='blank_'>
+	              ops visual backlog tool.</a></p>
+	  </div>
+  </div>
+	<div class="row">
+			<div class="well">
+				<form class="form-inline coolForm">
+					  <div class="form-group col-lg-2 col-md-3 col-sm-6 col-xs-12">
+								    <input type="text" class="form-control col-lg-4 col-md-6 col-sm-12" ng-model="formSelected.from",  data-output="formSelected.from", jqdatepicker placeholder="From: YY/MM/DD"/>
+					  </div>
+					  <div class="form-group col-lg-2 col-md-3 col-sm-6 col-xs-12 ">
+							    <input type="text" class="form-control col-lg-4 col-md-6 col-sm-12" ng-model="formSelected.to", data-output="formSelected.to", jqdatepicker placeholder="To: YY/MM/DD"/>
+					  </div>
+					  <div class="form-group col-lg-2 col-md-3 col-sm-6 col-xs-12 ">
+							    <select ng-model="formSelected.department" type="text" class="form-control", placeholder="Department" ng-change="toggleView()">
+									 <option value="" disabled selected>Department</option>
+							    	<option>All Departments</option>
+							    	<option>Accessories</option>
+								    <option>Bags</option>
+								    <option>Clothing</option>
+								    <option>Shoes</option>
+									</select>
+					  </div>
+					    <div class="form-group">
+								    <select ng-if="isBags" ng-model="formSelected.category" type="text" class="form-control", placeholder="Bag">
+								    	    <option value="" disabled selected>Category</option>
+								    	    <option>All Categories</option>
+													<option ng-repeat="bag in bags" value="{{bag}}">{{bag}}</option>
+										</select>
+					  </div>
+					  <div class="form-group">
+								    <select ng-if="isClothing" ng-model="formSelected.category" type="text" class="form-control", placeholder="Clothing">
+								    	    <option value="" disabled selected>Category</option>
+								    	    <option>All Categories</option>
+													<option ng-repeat="cloth in clothing" value="{{cloth}}">{{cloth}}</option>
+										</select>
+					  </div>
+					  <div class="form-group">
+								    <select ng-if="isAccesory" ng-model="formSelected.category" type="text" class="form-control", placeholder="Accessory">
+													<option value="" disabled selected>Category</option>
+													<option>All Categories</option>
+													<option ng-repeat="Accesory in accessories" value="{{Accesory}}">{{Accesory}}</option>
+										</select>
+					  </div>
+					  <div class="form-group">
+								    <select ng-if="isShoes" ng-model="formSelected.category" type="text" class="form-control", placeholder="Shoe">
+								 					<option value="" disabled selected>Category</option>
+								 					<option>All Categories</option>
+													<option ng-repeat="shoe in shoes" value="{{shoe}}">{{shoe}}</option>
+										</select>
+					  </div>
+					  <div class="form-group">
+								    <select ng-model="formSelected.gender" type="text" class="form-control", placeholder="Gender">
+								    		<option value="" disabled selected>Gender</option>
+								    	  <option>All Genders</option>
+								    		<option>Male</option>
+										    <option>Female</option>
+										    <option>Boy</option>
+										    <option>Girl</option>
+										</select>
+					  </div>
+					  	<div class="form-group col-xs-12 pull-left coolForm">
+			     				<button type="button" class="btn btn-md btn-warning datepicker" ng-click='currentDate()'>Current Day</button>
+			     				<button type="button" class="btn btn-md btn-warning datepicker" ng-click='lastWeek()'>Last Week</button>
+			     				<button type="button" class="btn btn-md btn-warning datepicker" ng-click='lastMonth()'>Last Month</button>
+			   		</div>
+<!-- 						<modal></modal>
+ -->				</form>
+   					<div class="form-group col-xs-12 pull-left">
+			     				<button type="button" class="btn btn-lg btn-primary" ng-click='goTo()'>Submit</button>
+			   		</div>
+			</div>
+	</div>
+</div>
+
+

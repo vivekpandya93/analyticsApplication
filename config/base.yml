@@ -1,0 +1,24 @@
+domain: namshi.net
+routes:
+  healthCheck: '/hc/buying'
+mysql:
+  server:
+    host: locahost
+    user: root
+    password: pass
+  dbs:
+    bob: bob_{{ env }}
+    namdex: zeus_{{ env }}
+    cerberus: cerberus_{{env}}
+apps:
+  karl:
+    user: tech_user
+    password: tech1234
+apis:
+  protocol: 'https'
+  domain: 'namshi.com'
+  port: 443
+  hostName: 'api.{{ apis.domain }}'
+  baseUrl: '{{ apis.protocol }}://{{ apis.hostName }}:{{ apis.port }}'
+  karl:
+    emailAlert: '{{ apis.baseUrl }}/karl/email/ops_alerts'

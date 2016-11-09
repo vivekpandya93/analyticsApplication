@@ -1,0 +1,126 @@
+.coolForm .form-group {
+	margin: 10px;
+}
+.inline-cool-form{
+  display: inline-block;
+  float: none;
+}
+.inline-cool-form .btn {
+  padding:6px 12px;
+}
+.coolForm .form-group .form-control{
+	display: block;
+	width: 100%;
+}
+.coolForm .btn{
+	margin: 0 0 0;
+}
+.well{
+	overflow: hidden;
+}
+
+.datepicker { 
+  padding: 10px 20px;
+}
+
+
+.lblBtn {
+  padding: 8px;
+  margin: 2px 0px 2px 2px;
+  display: inline-block;
+  font-size: 11px;
+  border-radius: 50px;
+} 
+
+.badge1{
+  border-radius: 3px;
+  padding: 7px;
+  width: 120px;
+  font-size: 11px;
+  background: #77A6CE;
+  margin-top: 10px;
+    display: inline-block;
+
+}
+
+.badge2{
+  border-radius: 3px;
+  padding: 7px;
+  width: 110px;
+  margin-top: 10px;
+  font-size: 11px;
+  background: #DAA520;
+  display: inline-block;
+}
+
+body{
+	padding-top: 80px;
+}
+#navBar .cta-group{
+	display: inline-block;
+}
+@media (max-width: 1220px) {
+	body{
+		padding-top: 120px;
+	}	
+
+}
+.fixedBtn{
+	position: fixed;
+  right: 10px;
+  bottom: 5px;
+  height: 40px;
+  z-index: 10000;
+}
+@media (max-width: 970px) {
+  #navBar {
+    font-size: 12px;
+  }
+  #navBar .cta-group{
+  	clear: left;
+  	float: left;
+  	margin: 10px;
+  }
+  .inline-cool-form{
+    margin: 10px;
+  }
+}
+
+@media (max-width: 865px) {
+	body{
+		padding-top: 180px;
+	}
+		
+}	
+ul.list-group-flush{
+	margin: 0;
+	padding: 0;
+	margin-left: 13px;
+	margin-bottom: 30px;
+}
+.list-group-flush li {
+    list-style: initial;
+    margin: 10px 0;
+}
+.h4.card-title{
+	height: 30px;
+}
+.loader{
+	background: rgba(255,255,255,0.7);
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  z-index: 1000;
+}
+
+.loader img {
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  top: 50%;
+}
