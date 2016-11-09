@@ -115,6 +115,8 @@ router.get('/sku/:sku', function(req, res){
 	 		 res.json({result: rows})
 	 });
 });
+
+
 	  // skus = _.map(rows, function(row) {
 	  // 	return row.simple_sku
 	  // });

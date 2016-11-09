@@ -2,8 +2,8 @@ select
 {{ locales.bobDb }}_ae.catalog_attribute_option_global_department.name as Department,
 {{ locales.bobDb }}_ae.catalog_attribute_option_global_category.name as Category,
 (case when {{ locales.namdexDb }}.sales_order_item.product_age_group <> "Adult" && {{ locales.namdexDb }}.sales_order_item.product_gender ="Male" then "Boy"
-			 when {{ locales.namdexDb }}.sales_order_item.product_age_group <> "Adult" && {{ locales.namdexDb }}.sales_order_item.product_gender ="Female" then "Girl"
-			 else {{ locales.namdexDb }}.sales_order_item.product_gender end) as Gender,
+	  when {{ locales.namdexDb }}.sales_order_item.product_age_group <> "Adult" && {{ locales.namdexDb }}.sales_order_item.product_gender ="Female" then "Girl"
+	  		 else {{ locales.namdexDb }}.sales_order_item.product_gender end) as Gender,
 sum(unit_price) as Revenue, product_brand, count(*) as UnitsSold
 
 from {{ locales.namdexDb }}.sales_order_item
